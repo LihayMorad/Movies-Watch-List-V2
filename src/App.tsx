@@ -1,7 +1,14 @@
+import "./styles/main.scss";
+import Logo from "./components/Logo";
+
 function App() {
-  console.log(import.meta.env, import.meta.url);
-  
-  return null;
+  console.log(import.meta.env);
+
+  return (
+    <>
+      <Logo />
+    </>
+  );
 }
 
 export default App;
