@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { styled, IconButton, Menu, MenuItem } from "@mui/material";
+import { useState, useContext } from "react";
+import { styled, IconButton, Menu, MenuItem, Button } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
+import { AuthContext } from "../context/authContext";
 
 const StyledIconButton = styled(IconButton)`
   position: absolute;
@@ -9,6 +10,7 @@ const StyledIconButton = styled(IconButton)`
 `;
 
 const UserMenu = () => {
+  const { user, handleSignIn, handleSignOut } = useContext(AuthContext);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = !!menuAnchorEl;
 
@@ -31,9 +33,11 @@ const UserMenu = () => {
         onClose={closeMenu}
         keepMounted
       >
-        <MenuItem>AAA</MenuItem>
-        <MenuItem>BBB</MenuItem>
-        <MenuItem>CCC</MenuItem>
+        <MenuItem>
+          <Button onClick={user ? handleSignOut : handleSignIn}>
+            {user ? "Logout" : "Login"}
+          </Button>
+        </MenuItem>
       </Menu>
     </>
   );
