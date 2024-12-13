@@ -17,3 +17,7 @@ export const StyledButton = styled(Button)`
   padding-left: 8px;
   text-transform: initial;
 `;
+
+export const tooltipStyles = {
+  sx: { backgroundColor: "black", color: "white" },
+};

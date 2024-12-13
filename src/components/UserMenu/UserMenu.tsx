@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { Menu } from "@mui/material";
+import { Menu, Tooltip } from "@mui/material";
 import {
   AccountCircle as AccountCircleIcon,
   Person as PersonIcon,
@@ -10,6 +10,7 @@ import {
   StyledIconButton,
   StyledMenuItem,
   StyledButton,
+  tooltipStyles,
 } from "./UserMenu.styles";
 
 const UserMenu = () => {
@@ -56,27 +57,39 @@ const UserMenu = () => {
           </StyledMenuItem>
         ) : (
           <>
-            <StyledMenuItem>
-              <StyledButton
-                color="primary"
-                variant="contained"
-                onClick={handleSignIn}
-              >
-                <PersonIcon />
-                Login
-              </StyledButton>
-            </StyledMenuItem>
+            <Tooltip
+              title="Login using your Google account"
+              placement="left"
+              slotProps={{ tooltip: tooltipStyles }}
+            >
+              <StyledMenuItem>
+                <StyledButton
+                  color="primary"
+                  variant="contained"
+                  onClick={handleSignIn}
+                >
+                  <PersonIcon />
+                  Login
+                </StyledButton>
+              </StyledMenuItem>
+            </Tooltip>
 
-            <StyledMenuItem>
-              <StyledButton
-                color="info"
-                variant="outlined"
-                onClick={handleSignInAnonymously}
-              >
-                <PersonOutlineIcon />
-                Login as Guest
-              </StyledButton>
-            </StyledMenuItem>
+            <Tooltip
+              title="Login Anonymously"
+              placement="left"
+              slotProps={{ tooltip: tooltipStyles }}
+            >
+              <StyledMenuItem>
+                <StyledButton
+                  color="info"
+                  variant="outlined"
+                  onClick={handleSignInAnonymously}
+                >
+                  <PersonOutlineIcon />
+                  Login as Guest
+                </StyledButton>
+              </StyledMenuItem>
+            </Tooltip>
           </>
         )}
       </Menu>
