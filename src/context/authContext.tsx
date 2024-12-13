@@ -1,14 +1,21 @@
 import { createContext, FunctionComponent, useEffect, useState } from "react";
-import { signInWithPopup, signOut, User } from "firebase/auth";
+import {
+  signInWithPopup,
+  signOut,
+  signInAnonymously,
+  User,
+} from "firebase/auth";
 import { auth, googleAuthProvider } from "../config/firebase";
 
 export const AuthContext = createContext<{
   user: User | null;
   handleSignIn: () => void;
+  handleSignInAnonymously: () => void;
   handleSignOut: () => void;
 }>({
   user: null,
   handleSignIn: () => null,
+  handleSignInAnonymously: () => null,
   handleSignOut: () => null,
 });
 
@@ -37,9 +44,15 @@ const UserContextProvider: FunctionComponent<{ children: React.ReactNode }> = ({
     }
   };
 
+  const handleSignInAnonymously = async () => {
+    try {
+      return await signInAnonymously(auth);
+    } catch (error) {}
+  };
+
   const handleSignOut = async () => {
     try {
-      signOut(auth);
+      return await signOut(auth);
     } catch (error) {}
   };
 
@@ -48,6 +61,7 @@ const UserContextProvider: FunctionComponent<{ children: React.ReactNode }> = ({
       value={{
         user,
         handleSignIn,
+        handleSignInAnonymously,
         handleSignOut,
       }}
     >
