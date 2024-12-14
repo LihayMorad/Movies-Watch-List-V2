@@ -1,15 +1,9 @@
 import { createContext, FunctionComponent, useEffect, useState } from "react";
+import { Filters } from "../types/Filters";
 
 const FILTERS_STORAGE_KEY = "filters";
-interface IFilters {
-  sortBy: /* filter*/ string;
-  orderBy: string;
-  year: number | "All";
-  maxResults: number;
-  showWatchedMovies: boolean;
-}
 
-const DEFAULT_FILTERS: IFilters = {
+const DEFAULT_FILTERS: Filters = {
   sortBy: "releaseYear",
   orderBy: "descending",
   year: "All",
@@ -18,8 +12,8 @@ const DEFAULT_FILTERS: IFilters = {
 };
 
 export const FiltersContext = createContext<{
-  filters: IFilters;
-  updateFilters: (filters: IFilters) => void;
+  filters: Filters;
+  updateFilters: (filters: Partial<Filters>) => void;
 }>({
   filters: DEFAULT_FILTERS,
   updateFilters: () => undefined,
@@ -28,7 +22,7 @@ export const FiltersContext = createContext<{
 const FiltersContextProvider: FunctionComponent<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const [filters, setFilters] = useState<IFilters>(DEFAULT_FILTERS);
+  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
 
   useEffect(() => {
     const localStorageFilters = localStorage.getItem(FILTERS_STORAGE_KEY);
@@ -40,9 +34,12 @@ const FiltersContextProvider: FunctionComponent<{
     }
   }, []);
 
-  const updateFilters = (filters: IFilters) => {
-    localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify(filters));
-    setFilters((prev) => ({ ...prev, ...filters }));
+  const updateFilters = (filters: Partial<Filters>) => {
+    setFilters((prev) => {
+      const updatedFilters = { ...prev, ...filters };
+      localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify(updatedFilters));
+      return updatedFilters;
+    });
   };
 
   return (
