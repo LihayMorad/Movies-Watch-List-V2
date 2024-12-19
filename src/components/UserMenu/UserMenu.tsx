@@ -1,17 +1,25 @@
 import { useState, useContext, useEffect } from "react";
-import { Menu, Tooltip } from "@mui/material";
+import { Menu, MenuItem, Tooltip, Button, IconButton } from "@mui/material";
 import {
   AccountCircle as AccountCircleIcon,
   Person as PersonIcon,
   PersonOutline as PersonOutlineIcon,
 } from "@mui/icons-material";
 import { AuthContext } from "../../context/authContext";
-import {
-  StyledIconButton,
-  StyledMenuItem,
-  StyledButton,
-  tooltipStyles,
-} from "./UserMenu.styles";
+
+const tooltipStyles = {
+  sx: { backgroundColor: "black", color: "white" },
+};
+const buttonStyles = {
+  gap: "6px",
+  paddingLeft: "8px",
+  textTransform: "initial",
+};
+const menuItemStyles = {
+  "&:hover": {
+    backgroundColor: "initial",
+  },
+};
 
 const UserMenu = () => {
   const { user, handleSignIn, handleSignInAnonymously, handleSignOut } =
@@ -34,9 +42,13 @@ const UserMenu = () => {
 
   return (
     <>
-      <StyledIconButton color="primary" onClick={openMenu}>
+      <IconButton
+        color="primary"
+        onClick={openMenu}
+        sx={{ position: "absolute", right: 0, color: "white" }}
+      >
         <AccountCircleIcon fontSize="large" color="inherit" />
-      </StyledIconButton>
+      </IconButton>
 
       <Menu
         anchorEl={menuAnchorEl}
@@ -45,16 +57,19 @@ const UserMenu = () => {
         keepMounted
       >
         {user ? (
-          <StyledMenuItem>
-            <StyledButton
+          <MenuItem sx={menuItemStyles}>
+            <Button
               color="secondary"
               variant="outlined"
               onClick={handleSignOut}
-              sx={{ pl: "inherit" }}
+              sx={{
+                pl: "inherit",
+                ...buttonStyles,
+              }}
             >
               Logout
-            </StyledButton>
-          </StyledMenuItem>
+            </Button>
+          </MenuItem>
         ) : (
           <>
             <Tooltip
@@ -62,16 +77,17 @@ const UserMenu = () => {
               placement="left"
               slotProps={{ tooltip: tooltipStyles }}
             >
-              <StyledMenuItem>
-                <StyledButton
+              <MenuItem sx={menuItemStyles}>
+                <Button
                   color="primary"
                   variant="contained"
                   onClick={handleSignIn}
+                  sx={buttonStyles}
                 >
                   <PersonIcon />
                   Login
-                </StyledButton>
-              </StyledMenuItem>
+                </Button>
+              </MenuItem>
             </Tooltip>
 
             <Tooltip
@@ -79,16 +95,17 @@ const UserMenu = () => {
               placement="left"
               slotProps={{ tooltip: tooltipStyles }}
             >
-              <StyledMenuItem>
-                <StyledButton
+              <MenuItem sx={menuItemStyles}>
+                <Button
                   color="info"
                   variant="outlined"
                   onClick={handleSignInAnonymously}
+                  sx={buttonStyles}
                 >
                   <PersonOutlineIcon />
                   Login as Guest
-                </StyledButton>
-              </StyledMenuItem>
+                </Button>
+              </MenuItem>
             </Tooltip>
           </>
         )}
