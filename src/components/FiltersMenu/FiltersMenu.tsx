@@ -6,6 +6,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  TextField,
   Tooltip,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
@@ -22,7 +23,6 @@ const tooltipStyles = {
 };
 
 const selectStyles = {
-  textAlign: "left",
   color: "white",
   ".MuiSelect-iconOutlined": {
     color: "white",
@@ -200,6 +200,31 @@ const FiltersMenu = () => {
             />
           </Tooltip>
         </FormControl>
+      </Grid>
+
+      <Grid width="300px">
+        <TextField
+          name="search"
+          label="Type movie name"
+          variant="outlined"
+          onChange={handleFilterChange}
+          sx={{
+            "& .MuiInputLabel-root": {
+              color: "white",
+            },
+            "& .MuiOutlinedInput-root": {
+              color: "white",
+            },
+            "&, &:hover": {
+              "& .MuiOutlinedInput-root.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                {
+                  "&, &.Mui-focused": {
+                    borderColor: "white",
+                  },
+                },
+            },
+          }}
+        />
       </Grid>
     </Grid>
   );
