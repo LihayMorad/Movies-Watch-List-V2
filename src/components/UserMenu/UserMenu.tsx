@@ -45,7 +45,7 @@ const UserMenu = () => {
       <IconButton
         color="primary"
         onClick={openMenu}
-        sx={{ position: "absolute", right: 0, color: "white" }}
+        sx={{ position: "absolute", top: 0, right: 0, color: "white" }}
       >
         <AccountCircleIcon fontSize="large" color="inherit" />
       </IconButton>
