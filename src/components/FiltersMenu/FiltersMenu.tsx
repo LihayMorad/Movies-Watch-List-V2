@@ -210,7 +210,7 @@ const FiltersMenu = () => {
           onChange={handleFilterChange}
           sx={{
             "& .MuiInputLabel-root": {
-              color: "white",
+              color: "rgba(255, 255, 255, 0.75)",
             },
             "& .MuiOutlinedInput-root": {
               color: "white",
