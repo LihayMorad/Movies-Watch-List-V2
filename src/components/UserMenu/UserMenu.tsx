@@ -36,7 +36,7 @@ const UserMenu = () => {
 
   useEffect(() => {
     return () => {
-      isOpen && closeMenu();
+      if (isOpen) closeMenu();
     };
   }, [isOpen, user]);
 

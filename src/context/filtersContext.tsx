@@ -29,7 +29,7 @@ const FiltersContextProvider: FunctionComponent<{
 
     if (localStorageFilters) {
       try {
-        setFilters(JSON.parse(localStorageFilters));
+        setFilters(JSON.parse(localStorageFilters) as Filters);
       } catch (error) {}
     }
   }, []);

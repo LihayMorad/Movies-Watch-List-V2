@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, ChangeEvent } from "react";
 import {
   Checkbox,
   FormControl,
@@ -7,6 +7,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
   Tooltip,
 } from "@mui/material";
@@ -59,7 +60,11 @@ const getOrderLabel = (
 const FiltersMenu = () => {
   const { filters, updateFilters } = useContext(FiltersContext);
 
-  const handleFilterChange = (event: any) => {
+  const handleFilterChange = (
+    event:
+      | SelectChangeEvent<string | number>
+      | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     updateFilters({ [event.target.name]: event.target.value });
   };
 
@@ -161,7 +166,9 @@ const FiltersMenu = () => {
             sx={selectStyles}
           >
             {[5, 10, 25, 50].map((value) => (
-              <MenuItem value={value}>{value}</MenuItem>
+              <MenuItem key={value} value={value}>
+                {value}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
