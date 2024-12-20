@@ -3,6 +3,7 @@ import {
   Checkbox,
   FormControl,
   IconButton,
+  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -14,6 +15,7 @@ import {
   ExpandMoreRounded as ExpandMoreRoundedIcon,
   RemoveRedEye as RemoveRedEyeIcon,
   RemoveRedEyeOutlined as RemoveRedEyeOutlinedIcon,
+  Search as SearchIcon,
 } from "@mui/icons-material";
 import { FiltersContext } from "../../context/filtersContext";
 import { Filters } from "../../types/Filters";
@@ -208,13 +210,20 @@ const FiltersMenu = () => {
           label="Type movie name"
           variant="outlined"
           onChange={handleFilterChange}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            },
+          }}
           sx={{
-            "& .MuiInputLabel-root": {
-              color: "rgba(255, 255, 255, 0.75)",
-            },
-            "& .MuiOutlinedInput-root": {
-              color: "white",
-            },
+            "& .MuiOutlinedInput-root,& .MuiInputLabel-root, & .MuiInputAdornment-root":
+              {
+                color: "white",
+              },
             "&, &:hover": {
               "& .MuiOutlinedInput-root.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
                 {
