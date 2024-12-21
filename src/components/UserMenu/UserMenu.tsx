@@ -1,10 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Menu, MenuItem, Tooltip, Button, IconButton } from "@mui/material";
-import {
-  AccountCircle as AccountCircleIcon,
-  Person as PersonIcon,
-  PersonOutline as PersonOutlineIcon,
-} from "@mui/icons-material";
+import { AccountCircle as AccountCircleIcon, Person as PersonIcon, PersonOutline as PersonOutlineIcon } from "@mui/icons-material";
 import { AuthContext } from "../../context/authContext";
 
 const tooltipStyles = {
@@ -22,8 +18,7 @@ const menuItemStyles = {
 };
 
 const UserMenu = () => {
-  const { user, handleSignIn, handleSignInAnonymously, handleSignOut } =
-    useContext(AuthContext);
+  const { user, handleSignIn, handleSignInAnonymously, handleSignOut } = useContext(AuthContext);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = !!menuAnchorEl;
 
@@ -42,20 +37,11 @@ const UserMenu = () => {
 
   return (
     <>
-      <IconButton
-        color="primary"
-        onClick={openMenu}
-        sx={{ position: "absolute", top: 0, right: 0, color: "white" }}
-      >
+      <IconButton color="primary" onClick={openMenu} sx={{ position: "absolute", top: 0, right: 0, color: "white" }}>
         <AccountCircleIcon fontSize="large" color="inherit" />
       </IconButton>
 
-      <Menu
-        anchorEl={menuAnchorEl}
-        open={isOpen}
-        onClose={closeMenu}
-        keepMounted
-      >
+      <Menu anchorEl={menuAnchorEl} open={isOpen} onClose={closeMenu} keepMounted>
         {user ? (
           <MenuItem sx={menuItemStyles}>
             <Button
@@ -72,36 +58,18 @@ const UserMenu = () => {
           </MenuItem>
         ) : (
           <>
-            <Tooltip
-              title="Login using your Google account"
-              placement="left"
-              slotProps={{ tooltip: tooltipStyles }}
-            >
+            <Tooltip title="Login using your Google account" placement="left" slotProps={{ tooltip: tooltipStyles }}>
               <MenuItem sx={menuItemStyles}>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={handleSignIn}
-                  sx={buttonStyles}
-                >
+                <Button color="primary" variant="contained" onClick={handleSignIn} sx={buttonStyles}>
                   <PersonIcon />
                   Login
                 </Button>
               </MenuItem>
             </Tooltip>
 
-            <Tooltip
-              title="Login Anonymously"
-              placement="left"
-              slotProps={{ tooltip: tooltipStyles }}
-            >
+            <Tooltip title="Login Anonymously" placement="left" slotProps={{ tooltip: tooltipStyles }}>
               <MenuItem sx={menuItemStyles}>
-                <Button
-                  color="info"
-                  variant="outlined"
-                  onClick={handleSignInAnonymously}
-                  sx={buttonStyles}
-                >
+                <Button color="info" variant="outlined" onClick={handleSignInAnonymously} sx={buttonStyles}>
                   <PersonOutlineIcon />
                   Login as Guest
                 </Button>

@@ -1,10 +1,5 @@
 import { createContext, FunctionComponent, useEffect, useState } from "react";
-import {
-  signInWithPopup,
-  signOut,
-  signInAnonymously,
-  User,
-} from "firebase/auth";
+import { signInWithPopup, signOut, signInAnonymously, User } from "firebase/auth";
 import { auth, googleAuthProvider } from "../config/firebase";
 
 export const AuthContext = createContext<{
@@ -19,9 +14,7 @@ export const AuthContext = createContext<{
   handleSignOut: () => null,
 });
 
-const UserContextProvider: FunctionComponent<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const UserContextProvider: FunctionComponent<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {

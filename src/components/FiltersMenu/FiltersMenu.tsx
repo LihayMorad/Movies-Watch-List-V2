@@ -37,10 +37,7 @@ const selectStyles = {
   },
 };
 
-const getOrderLabel = (
-  sortBy: Filters["sortBy"],
-  orderBy: Filters["orderBy"]
-): string => {
+const getOrderLabel = (sortBy: Filters["sortBy"], orderBy: Filters["orderBy"]): string => {
   const isDescending = orderBy === "descending";
 
   switch (sortBy) {
@@ -60,11 +57,7 @@ const getOrderLabel = (
 const FiltersMenu = () => {
   const { filters, updateFilters } = useContext(FiltersContext);
 
-  const handleFilterChange = (
-    event:
-      | SelectChangeEvent<string | number>
-      | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleFilterChange = (event: SelectChangeEvent<string | number> | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     updateFilters({ [event.target.name]: event.target.value });
   };
 
@@ -89,9 +82,7 @@ const FiltersMenu = () => {
             autoWidth
             sx={selectStyles}
           >
-            {filters.year === "All" && (
-              <MenuItem value="releaseYear">Year</MenuItem>
-            )}
+            {filters.year === "All" && <MenuItem value="releaseYear">Year</MenuItem>}
             <MenuItem value="NameEng">English Name</MenuItem>
             <MenuItem value="NameHeb">Hebrew Name</MenuItem>
             <MenuItem value="imdbRating">IMDB Rating</MenuItem>
@@ -114,12 +105,8 @@ const FiltersMenu = () => {
             autoWidth
             sx={selectStyles}
           >
-            <MenuItem value="descending">
-              {getOrderLabel(filters.sortBy, "descending")}
-            </MenuItem>
-            <MenuItem value="ascending">
-              {getOrderLabel(filters.sortBy, "ascending")}
-            </MenuItem>
+            <MenuItem value="descending">{getOrderLabel(filters.sortBy, "descending")}</MenuItem>
+            <MenuItem value="ascending">{getOrderLabel(filters.sortBy, "ascending")}</MenuItem>
           </Select>
         </FormControl>
       </Grid>
@@ -177,11 +164,7 @@ const FiltersMenu = () => {
       <Grid>
         <FormControl>
           <Tooltip
-            title={
-              filters.showWatchedMovies
-                ? "Showing unseen movies"
-                : "Showing watched movied"
-            }
+            title={filters.showWatchedMovies ? "Showing unseen movies" : "Showing watched movied"}
             slotProps={{ tooltip: tooltipStyles }}
           >
             <Checkbox
@@ -189,20 +172,12 @@ const FiltersMenu = () => {
               checked={filters.showWatchedMovies}
               onChange={handleCheckBoxChange}
               icon={
-                <IconButton
-                  color="primary"
-                  size="medium"
-                  sx={{ color: "white" }}
-                >
+                <IconButton color="primary" size="medium" sx={{ color: "white" }}>
                   <RemoveRedEyeOutlinedIcon fontSize="medium" />
                 </IconButton>
               }
               checkedIcon={
-                <IconButton
-                  color="primary"
-                  size="medium"
-                  sx={{ color: "white" }}
-                >
+                <IconButton color="primary" size="medium" sx={{ color: "white" }}>
                   <RemoveRedEyeIcon fontSize="medium" />
                 </IconButton>
               }
@@ -227,17 +202,15 @@ const FiltersMenu = () => {
             },
           }}
           sx={{
-            "& .MuiOutlinedInput-root,& .MuiInputLabel-root, & .MuiInputAdornment-root":
-              {
-                color: "white",
-              },
+            "& .MuiOutlinedInput-root,& .MuiInputLabel-root, & .MuiInputAdornment-root": {
+              color: "white",
+            },
             "&, &:hover": {
-              "& .MuiOutlinedInput-root.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-                {
-                  "&, &.Mui-focused": {
-                    borderColor: "white",
-                  },
+              "& .MuiOutlinedInput-root.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                "&, &.Mui-focused": {
+                  borderColor: "white",
                 },
+              },
             },
           }}
         />
