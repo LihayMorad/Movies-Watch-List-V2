@@ -10,6 +10,7 @@ const buttonStyles = {
   gap: "6px",
   paddingLeft: "8px",
   textTransform: "initial",
+  lineHeight: "normal",
 };
 const menuItemStyles = {
   "&:hover": {
@@ -51,6 +52,7 @@ const UserMenu = () => {
               sx={{
                 pl: "inherit",
                 ...buttonStyles,
+                pl: "inherit",
               }}
             >
               Logout
