@@ -18,6 +18,7 @@ import {
   RemoveRedEyeOutlined as RemoveRedEyeOutlinedIcon,
   Search as SearchIcon,
 } from "@mui/icons-material";
+import { AuthContext } from "../../context/authContext";
 import { FiltersContext } from "../../context/filtersContext";
 import { Filters } from "../../types/Filters";
 
@@ -55,6 +56,7 @@ const getOrderLabel = (sortBy: Filters["sortBy"], orderBy: Filters["orderBy"]): 
 };
 
 const FiltersMenu = () => {
+  const { user } = useContext(AuthContext);
   const { filters, updateFilters } = useContext(FiltersContext);
 
   const handleFilterChange = (event: SelectChangeEvent<string | number> | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -64,6 +66,8 @@ const FiltersMenu = () => {
   const handleCheckBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateFilters({ [event.target.name]: event.target.checked });
   };
+
+  if (!user) return null;
 
   return (
     <Grid container justifyContent="center" gap={2}>
