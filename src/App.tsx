@@ -5,6 +5,7 @@ import UserMenu from "./components/UserMenu/UserMenu";
 import FiltersMenu from "./components/FiltersMenu/FiltersMenu";
 import UserContextProvider from "./context/authContext";
 import FiltersContextProvider from "./context/filtersContext";
+import MoviesList from "./components/MoviesList/MoviesList";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Logo />
           <UserMenu />
           <FiltersMenu />
+          <MoviesList />
         </FiltersContextProvider>
       </UserContextProvider>
     </StyledEngineProvider>
