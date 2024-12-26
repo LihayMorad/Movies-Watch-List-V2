@@ -50,7 +50,6 @@ const UserMenu = () => {
               variant="outlined"
               onClick={handleSignOut}
               sx={{
-                pl: "inherit",
                 ...buttonStyles,
                 pl: "inherit",
               }}
