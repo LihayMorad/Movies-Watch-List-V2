@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { Grid2, Link } from "@mui/material";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
-import { useState } from "react";
 
 const WATCHLIST = "WATCHLIST";
 const TRENDING = "TRENDING";
