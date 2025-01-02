@@ -1,5 +1,6 @@
 import { Grid2 } from "@mui/material";
 import Logo from "./Logo";
+import NavigationMenu from "./NavigationMenu";
 import UserMenu from "./UserMenu/UserMenu";
 
 const Header = () => {
@@ -9,7 +10,9 @@ const Header = () => {
         <Logo />
       </Grid2>
 
-      <Grid2 size={{ xs: "auto" }}>NavigationMenu</Grid2>
+      <Grid2 size={{ xs: "auto" }}>
+        <NavigationMenu />
+      </Grid2>
 
       <Grid2 size={{ xs: 1 }}>
         <UserMenu />
