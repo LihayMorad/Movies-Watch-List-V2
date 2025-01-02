@@ -34,19 +34,24 @@ const UserContextProvider: FunctionComponent<{ children: React.ReactNode }> = ({
       setUser(user);
     } catch (error) {
       setUser(null);
+      console.log(error);
     }
   };
 
   const handleSignInAnonymously = async () => {
     try {
       return await signInAnonymously(auth);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSignOut = async () => {
     try {
       return await signOut(auth);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
