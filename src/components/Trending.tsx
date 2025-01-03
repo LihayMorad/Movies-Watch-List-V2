@@ -1,28 +1,10 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Grid2, Typography, Box } from "@mui/material";
+import { Box, Grid2, Typography } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { AuthContext } from "../context/authContext";
-
-const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500/";
-
-interface TrendingMovie {
-  backdrop_path: string;
-  id: number;
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  media_type: string;
-  adult: boolean;
-  original_language: string;
-  genre_ids: number[];
-  popularity: number;
-  release_date: string; // "2024-11-20";
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import { TrendingMovie } from "../types/Movie";
+import MovieCard from "./MovieCard/MovieCard";
 
 const Trending = () => {
   const { user } = useContext(AuthContext);
@@ -52,26 +34,7 @@ const Trending = () => {
       </Typography>
 
       <Grid2 container gap={1} justifyContent="center">
-        {movies?.map((movie) => {
-          return (
-            <Box
-              key={movie.id}
-              onClick={() => alert(`Clicked on the movie "${movie.title}"`)}
-              component="img"
-              src={`${TMDB_POSTER_BASE_URL}${movie.poster_path}`}
-              alt={movie.title}
-              loading="lazy"
-              width="230px"
-              height="345px"
-              borderRadius="16px"
-              boxShadow="0px 1px 5px black"
-              sx={(theme) => ({
-                cursor: "pointer",
-                "&:hover": { filter: "brightness(1.1)", outline: `1px solid ${theme.palette.warning.main}` },
-              })}
-            />
-          );
-        })}
+        {movies?.map((movie) => <MovieCard movie={movie as TrendingMovie} />)}
       </Grid2>
 
       <Grid2></Grid2>
