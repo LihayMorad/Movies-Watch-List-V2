@@ -18,7 +18,7 @@ const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
         "&:hover": { filter: "brightness(1.1)", outline: `1px solid ${theme.palette.warning.main}` },
       })}
     >
-      <Box component="img" src={`${TMDB_POSTER_BASE_URL}${movie.poster_path}`} alt={movie.title} loading="lazy" />
+      <Box component="img" maxWidth="100%" src={`${TMDB_POSTER_BASE_URL}${movie.poster_path}`} alt={movie.title} loading="lazy" />
     </Card>
   );
 };
