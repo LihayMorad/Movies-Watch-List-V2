@@ -15,7 +15,12 @@ const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
         boxShadow: "0px 1px 5px black",
         cursor: "pointer",
         background: "none",
-        "&:hover": { filter: "brightness(1.1)", outline: `1px solid ${theme.palette.warning.main}` },
+        transition: "transform 0.15s ease-out",
+        "&:hover": {
+          transform: "scale(1.05)",
+          filter: "brightness(1.1)",
+          outline: `1px solid ${theme.palette.warning.main}`,
+        },
       })}
     >
       <Box
