@@ -6,12 +6,12 @@ import { MovieContext } from "../../context/movieContext";
 const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
-  const { setMovie } = useContext(MovieContext);
+  const { setMovieId } = useContext(MovieContext);
 
   return (
     <Card
       key={movie.id}
-      onClick={() => setMovie(movie)}
+      onClick={() => setMovieId(movie.id)}
       sx={(theme) => ({
         width: "230px",
         height: "345px",
