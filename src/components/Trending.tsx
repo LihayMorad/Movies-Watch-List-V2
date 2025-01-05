@@ -34,7 +34,7 @@ const Trending = () => {
       </Typography>
 
       <Grid2 container gap={1} justifyContent="center">
-        {movies?.map((movie) => <MovieCard movie={movie as TrendingMovie} />)}
+        {movies?.map((movie) => <MovieCard movie={movie} />)}
       </Grid2>
 
       <Grid2></Grid2>
