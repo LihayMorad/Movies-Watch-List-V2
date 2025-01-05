@@ -42,7 +42,6 @@ const MoviesList = () => {
   }, [user?.uid]);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     if (user?.uid) fetchMovies();
   }, [user, fetchMovies]);
 
