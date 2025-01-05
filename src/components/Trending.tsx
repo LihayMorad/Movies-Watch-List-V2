@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Box, Grid2, Typography } from "@mui/material";
+import { Grid2, Typography } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { AuthContext } from "../context/authContext";
 import { TrendingMovie } from "../types/Movie";
