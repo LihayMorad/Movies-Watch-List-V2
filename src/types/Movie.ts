@@ -15,3 +15,26 @@ export interface TrendingMovie {
   vote_average: number;
   vote_count: number;
 }
+
+export interface Movie extends TrendingMovie {
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  homepage: string;
+  imdb_id: string;
+  origin_country: string[];
+  production_companies: {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+  }[];
+  production_countries: {
+    iso_3166_1: string;
+    name: string;
+  }[];
+  revenue: number;
+  runtime: number;
+  status: string;
+}
