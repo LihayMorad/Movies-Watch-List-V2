@@ -1,7 +1,7 @@
 import { Box, Card } from "@mui/material";
 import { TrendingMovie } from "../../types/Movie";
 
-const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500/";
+const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
   return (
