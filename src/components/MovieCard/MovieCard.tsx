@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import { Box, Card } from "@mui/material";
 import { TrendingMovie } from "../../types/Movie";
+import { MovieContext } from "../../context/movieContext";
 
 const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
+  const { setMovie } = useContext(MovieContext);
+
   return (
     <Card
       key={movie.id}
-      onClick={() => alert(`Clicked on the movie "${movie.title}"`)}
+      onClick={() => setMovie(movie)}
       sx={(theme) => ({
         width: "230px",
         height: "345px",

@@ -1,28 +1,14 @@
 import { Grid2, Box, Typography } from "@mui/material";
-import { TrendingMovie } from "../types/Movie";
+import { useContext } from "react";
+import { MovieContext } from "../context/movieContext";
 
 const TMDB_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/original";
 
-const movie: TrendingMovie = {
-  backdrop_path: "/3WnoZw50qIfXsFnKr0LddEh5Jnf.jpg",
-  id: 1222248,
-  title: "Number 24",
-  original_title: "Nr. 24",
-  overview:
-    "On the brink of the Second World War, a young Norwegian man's drive to resist the Nazis sets a new course for his future – and the future of his country.",
-  poster_path: "/rzsmKSFEsEWBLbJ968abffnfYZ7.jpg",
-  media_type: "movie",
-  adult: false,
-  original_language: "no",
-  genre_ids: [10752, 36],
-  popularity: 27.824,
-  release_date: "2024-10-30",
-  video: false,
-  vote_average: 7.8,
-  vote_count: 36,
-};
-
 const MovieHighlight = () => {
+  const { movie } = useContext(MovieContext);
+
+  if (!movie) return null;
+
   return (
     <Grid2 container height="600px">
       <Box
