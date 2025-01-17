@@ -37,11 +37,9 @@ export interface Movie extends TrendingMovie {
   revenue: number;
   runtime: number;
   status: string;
-
   similar: {
     results: TrendingMovie[];
   };
-
   videos: {
     results: {
       name: string;
@@ -49,6 +47,13 @@ export interface Movie extends TrendingMovie {
       site: string;
       type: string;
       official: boolean;
+    }[];
+  };
+  credits: {
+    cast: {
+      id: number;
+      name: string;
+      profile_path: string;
     }[];
   };
 }

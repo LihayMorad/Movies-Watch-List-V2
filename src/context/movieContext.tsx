@@ -19,7 +19,7 @@ const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode 
   const fetchMovie = useCallback(async () => {
     try {
       const { data } = await axios.get<Movie>(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=similar,videos`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=similar,videos,credits`
       );
 
       setMovie(data);
