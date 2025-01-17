@@ -13,8 +13,8 @@ const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
       key={movie.id}
       onClick={() => setMovieId(movie.id)}
       sx={(theme) => ({
-        width: "230px",
-        height: "345px",
+        width: "220px",
+        height: "337px",
         borderRadius: "16px",
         boxShadow: "0px 1px 5px black",
         cursor: "pointer",
