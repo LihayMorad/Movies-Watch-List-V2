@@ -63,7 +63,7 @@ const MovieHighlight = () => {
                 size="small"
                 variant="outlined"
                 label={
-                  <Typography variant="subtitle2" color="#ffffff">
+                  <Typography variant="subtitle2" color="#ffffff" sx={typographyStyles}>
                     {genre.name}
                   </Typography>
                 }
