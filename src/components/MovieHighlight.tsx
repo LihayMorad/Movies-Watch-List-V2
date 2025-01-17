@@ -4,6 +4,10 @@ import { MovieContext } from "../context/movieContext";
 
 const TMDB_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/original";
 
+const typographyStyles = {
+  textShadow: "black 1px 0 10px",
+};
+
 const MovieHighlight = () => {
   const { movie } = useContext(MovieContext);
 
@@ -25,24 +29,28 @@ const MovieHighlight = () => {
 
       <Grid2 container flexDirection="column" gap={1} zIndex={1} padding={2}>
         <Grid2 mb={1}>
-          <Typography variant="h5">{movie.title}</Typography>
+          <Typography variant="h5" sx={typographyStyles}>
+            {movie.title}
+          </Typography>
         </Grid2>
 
         <Grid2>
-          <Typography variant="body1" maxWidth="400px">
+          <Typography variant="body1" sx={typographyStyles} maxWidth="400px">
             {movie.overview}
           </Typography>
         </Grid2>
 
         <Grid2 container gap={3} alignItems="center">
           <Grid2>
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={typographyStyles}>
               {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
             </Typography>
           </Grid2>
 
           <Grid2>
-            <Typography variant="subtitle2">{new Date(movie.release_date).getFullYear()}</Typography>
+            <Typography variant="subtitle2" sx={typographyStyles}>
+              {new Date(movie.release_date).getFullYear()}
+            </Typography>
           </Grid2>
 
           <Grid2 container gap={1}>
@@ -56,7 +64,7 @@ const MovieHighlight = () => {
                     {genre.name}
                   </Typography>
                 }
-                sx={{ "& .MuiChip-label": { px: 1.5 } }}
+                sx={{ borderColor: "white", "& .MuiChip-label": { px: 1.5 } }}
               />
             ))}
           </Grid2>
@@ -64,17 +72,21 @@ const MovieHighlight = () => {
 
         <Grid2 container gap={2}>
           <Grid2>
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" sx={typographyStyles}>
               {movie.vote_average.toFixed(1)} ({Intl.NumberFormat("en", { notation: "compact" }).format(movie.vote_count)} votes)
             </Typography>
           </Grid2>
 
           <Grid2>
-            <Typography variant="subtitle2">{"N/A"}</Typography>
+            <Typography variant="subtitle2" sx={typographyStyles}>
+              {"N/A"}
+            </Typography>
           </Grid2>
 
           <Grid2>
-            <Typography variant="subtitle2">{"N/A"}</Typography>
+            <Typography variant="subtitle2" sx={typographyStyles}>
+              {"N/A"}
+            </Typography>
           </Grid2>
         </Grid2>
       </Grid2>
