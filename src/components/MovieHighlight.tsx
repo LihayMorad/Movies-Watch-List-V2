@@ -46,7 +46,7 @@ const MovieHighlight = () => {
         <Grid2 container gap={3} alignItems="center">
           <Grid2>
             <Typography variant="subtitle2" sx={typographyStyles}>
-              {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
+              {movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : "N/A"}
             </Typography>
           </Grid2>
 
