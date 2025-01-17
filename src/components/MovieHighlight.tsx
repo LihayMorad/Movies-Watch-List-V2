@@ -1,4 +1,4 @@
-import { Grid2, Box, Typography, Chip } from "@mui/material";
+import { Grid2, Box, Typography, Chip, Link } from "@mui/material";
 import { useContext } from "react";
 import { MovieContext } from "../context/movieContext";
 
@@ -12,6 +12,9 @@ const MovieHighlight = () => {
   const { movie } = useContext(MovieContext);
 
   if (!movie) return null;
+
+  const youTubeTrailer = movie.videos.results.find((video) => video.official && video.site === "YouTube" && video.type === "Trailer");
+  const trailerLink = youTubeTrailer && `https://www.youtube.com/watch?v=${youTubeTrailer.key}`;
 
   return (
     <Grid2 container height="600px">
@@ -87,6 +90,14 @@ const MovieHighlight = () => {
             <Typography variant="subtitle2" sx={typographyStyles}>
               {"N/A"}
             </Typography>
+          </Grid2>
+        </Grid2>
+
+        <Grid2 container gap={2}>
+          <Grid2>
+            <Link href={trailerLink} color="#ffffff">
+              Trailer
+            </Link>
           </Grid2>
         </Grid2>
       </Grid2>

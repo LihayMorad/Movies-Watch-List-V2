@@ -37,4 +37,18 @@ export interface Movie extends TrendingMovie {
   revenue: number;
   runtime: number;
   status: string;
+
+  similar: {
+    results: TrendingMovie[];
+  };
+
+  videos: {
+    results: {
+      name: string;
+      key: string;
+      site: string;
+      type: string;
+      official: boolean;
+    }[];
+  };
 }
