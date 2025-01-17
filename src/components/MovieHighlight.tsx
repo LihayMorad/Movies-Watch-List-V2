@@ -101,7 +101,7 @@ const MovieHighlight = () => {
           {cast.map(
             (actor) =>
               actor.profile_path && (
-                <Grid2 key={actor.id} height="120px" borderRadius={2} position="relative">
+                <Grid2 key={actor.id} height="130px" borderRadius={2} position="relative">
                   <Box
                     component="img"
                     height="100%"
@@ -111,7 +111,15 @@ const MovieHighlight = () => {
                     borderRadius="inherit"
                     boxShadow="0 0 20px 0px #000000"
                   />
-                  <Typography variant="subtitle2" sx={typographyStyles} width="100%" position="absolute" bottom={0} textAlign="center">
+                  <Typography
+                    variant="subtitle2"
+                    fontSize="12px"
+                    sx={typographyStyles}
+                    width="100%"
+                    position="absolute"
+                    bottom={0}
+                    textAlign="center"
+                  >
                     {actor.name}
                   </Typography>
                 </Grid2>
