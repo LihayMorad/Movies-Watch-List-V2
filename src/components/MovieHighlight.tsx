@@ -30,7 +30,7 @@ const MovieHighlight = () => {
           background: `url(${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE_ORIGINAL}${movie.backdrop_path}) no-repeat`,
           backgroundSize: "contain",
           maskImage: "linear-gradient(to right, black 75%, transparent 100%)",
-          opacity: 0.7,
+          opacity: 0.8,
         }}
       />
 
