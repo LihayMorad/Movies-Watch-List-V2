@@ -1,6 +1,8 @@
-import { Grid2, Box, Typography, Chip, Link } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { Grid2, Box, Typography, Chip, Tooltip, IconButton } from "@mui/material";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import { MovieContext } from "../context/movieContext";
+import MovieTrailer from "./MovieTrailer/MovieTrailer";
 
 const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 const TMDB_IMAGE_SIZE_ORIGINAL = "original";
@@ -10,13 +12,18 @@ const typographyStyles = {
   textShadow: "black 1px 0 10px",
 };
 
+const tooltipStyles = {
+  sx: { backgroundColor: "black", color: "white" },
+};
+
 const MovieHighlight = () => {
   const { movie } = useContext(MovieContext);
+  const [trailerDialogOpened, setTrailerDialogOpened] = useState(false);
 
   if (!movie) return null;
 
-  const youTubeTrailer = movie.videos.results.find((video) => video.official && video.site === "YouTube" && video.type === "Trailer");
-  const trailerLink = youTubeTrailer && `https://www.youtube.com/watch?v=${youTubeTrailer.key}`;
+  const youTubeTrailer = movie.videos?.results.find((video) => video.official && video.site === "YouTube" && video.type === "Trailer");
+  const youTubeTrailerKey = youTubeTrailer?.key;
 
   const cast = movie.credits.cast.slice(0, 3);
 
@@ -35,10 +42,26 @@ const MovieHighlight = () => {
       />
 
       <Grid2 container flexDirection="column" gap={1} zIndex={1} padding={2}>
-        <Grid2 mb={1}>
-          <Typography variant="h5" sx={typographyStyles}>
-            {movie.title}
-          </Typography>
+        <Grid2 container gap={2} alignItems="center">
+          <Grid2>
+            <Typography variant="h5" sx={typographyStyles}>
+              {movie.title}
+            </Typography>
+          </Grid2>
+
+          {youTubeTrailerKey && (
+            <Grid2>
+              <Tooltip title="Watch Trailer" slotProps={{ tooltip: tooltipStyles }}>
+                <IconButton sx={{ p: 0 }}>
+                  <YouTubeIcon
+                    fontSize="large"
+                    sx={{ color: "#FF0000", filter: "drop-shadow(0px 0px 6px black)" }}
+                    onClick={() => setTrailerDialogOpened(true)}
+                  />
+                </IconButton>
+              </Tooltip>
+            </Grid2>
+          )}
         </Grid2>
 
         <Grid2>
@@ -126,15 +149,9 @@ const MovieHighlight = () => {
               )
           )}
         </Grid2>
-
-        <Grid2 container gap={2}>
-          <Grid2>
-            <Link href={trailerLink} color="#ffffff">
-              Trailer
-            </Link>
-          </Grid2>
-        </Grid2>
       </Grid2>
+
+      <MovieTrailer trailerKey={youTubeTrailerKey} open={trailerDialogOpened} handleClose={() => setTrailerDialogOpened(false)} />
     </Grid2>
   );
 };
