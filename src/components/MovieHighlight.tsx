@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { Grid2, Box, Typography, Chip, Tooltip, IconButton } from "@mui/material";
+import { Grid2, Box, Typography, Chip, Tooltip, IconButton, Link } from "@mui/material";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import IMDB_LOGO from "../assets/IMDb_Logo.png";
 import { MovieContext } from "../context/movieContext";
 import MovieTrailer from "./MovieTrailer/MovieTrailer";
 
@@ -22,16 +23,16 @@ const MovieHighlight = () => {
 
   if (!movie) return null;
 
+  const imdbId = movie.imdb_id;
   const youTubeTrailer = movie.videos?.results.find((video) => video.official && video.site === "YouTube" && video.type === "Trailer");
   const youTubeTrailerKey = youTubeTrailer?.key;
-
   const cast = movie.credits.cast.slice(0, 3);
 
   return (
-    <Grid2 container height="600px">
+    <Grid2 container width="1070px" height="600px">
       <Box
         position="absolute"
-        width="1070px"
+        width="inherit"
         height="inherit"
         sx={{
           background: `url(${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE_ORIGINAL}${movie.backdrop_path}) no-repeat`,
@@ -41,13 +42,21 @@ const MovieHighlight = () => {
         }}
       />
 
-      <Grid2 container flexDirection="column" gap={1} zIndex={1} padding={2}>
-        <Grid2 container gap={2} alignItems="center">
-          <Grid2>
+      <Grid2 container flexDirection="column" gap={1} zIndex={1} padding={2} size={12}>
+        <Grid2 container gap={1} alignItems="center" justifyContent="space-between">
+          <Grid2 flexGrow={1}>
             <Typography variant="h5" sx={typographyStyles}>
               {movie.title}
             </Typography>
           </Grid2>
+
+          {imdbId && (
+            <Grid2>
+              <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
+                <img src={IMDB_LOGO} width="42px" style={{ verticalAlign: "text-top" }} />
+              </Link>
+            </Grid2>
+          )}
 
           {youTubeTrailerKey && (
             <Grid2>
