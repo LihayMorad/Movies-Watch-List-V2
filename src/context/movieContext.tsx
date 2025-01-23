@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Movie, OMDBMovie, TMDBMovie } from "../types/Movie";
+import { Movie, TMDBMovie, OMDBMovie } from "../types/Movie";
 import { AuthContext } from "./authContext";
 
 export const MovieContext = createContext<{
@@ -14,7 +14,7 @@ export const MovieContext = createContext<{
 const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [movieId, setMovieId] = useState<number | null>(null);
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useState<Partial<Movie> | null>(null);
 
   useEffect(() => {
     const fetchMovie = async () => {

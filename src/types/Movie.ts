@@ -20,7 +20,7 @@ export interface TMDBTrendingMovie {
   video: boolean;
 }
 
-export interface TMDBMovie extends TMDBTrendingMovie, OMDBMovie {
+export interface TMDBMovie {
   genres: {
     id: number;
     name: string;
@@ -64,3 +64,4 @@ export interface TMDBMovie extends TMDBTrendingMovie, OMDBMovie {
 
 export interface Movie extends TMDBMovie, TMDBTrendingMovie, OMDBMovie {}
 export interface TrendingMovie extends TMDBTrendingMovie {}
+export type blabla = TMDBMovie&TMDBTrendingMovie&OMDBMovie
