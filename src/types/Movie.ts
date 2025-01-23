@@ -1,3 +1,9 @@
+export interface OMDBMovie {
+  imdbRating: string;
+  imdbVotes: string;
+  Plot: string;
+}
+
 export interface TrendingMovie {
   backdrop_path: string;
   id: number;
@@ -10,13 +16,11 @@ export interface TrendingMovie {
   original_language: string;
   genre_ids: number[];
   popularity: number;
-  release_date: string; // "2024-11-20";
+  release_date: string;
   video: boolean;
-  vote_average: number;
-  vote_count: number;
 }
 
-export interface Movie extends TrendingMovie {
+export interface Movie extends TrendingMovie, OMDBMovie {
   genres: {
     id: number;
     name: string;

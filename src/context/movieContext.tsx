@@ -1,6 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Movie } from "../types/Movie";
+import { Movie, OMDBMovie } from "../types/Movie";
 import { AuthContext } from "./authContext";
 
 export const MovieContext = createContext<{
@@ -16,21 +16,25 @@ const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode 
   const [movieId, setMovieId] = useState<number | null>(null);
   const [movie, setMovie] = useState<Movie | null>(null);
 
-  const fetchMovie = useCallback(async () => {
-    try {
-      const { data } = await axios.get<Movie>(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=similar,videos,credits`
-      );
-
-      setMovie(data);
-    } catch (error) {
-      console.log("there was an error fetching the movie", error);
-    }
-  }, [user?.uid, movieId]);
-
   useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const { data } = await axios.get<Movie>(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=similar,videos,credits`
+        );
+
+        const {
+          data: { imdbRating, imdbVotes, Plot },
+        } = await axios.get<OMDBMovie>(`https://www.omdbapi.com/?i=${data.imdb_id}&type=movie&apikey=${import.meta.env.VITE_OMDB_API_KEY}`);
+
+        setMovie({ ...data, imdbRating, imdbVotes, Plot });
+      } catch (error) {
+        console.log("there was an error fetching the movie", error);
+      }
+    };
+
     if (user?.uid && movieId) fetchMovie();
-  }, [user, movieId, fetchMovie]);
+  }, [user, movieId]);
 
   return (
     <MovieContext.Provider

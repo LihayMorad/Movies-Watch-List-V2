@@ -50,14 +50,6 @@ const MovieHighlight = () => {
             </Typography>
           </Grid2>
 
-          {imdbId && (
-            <Grid2>
-              <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
-                <img src={IMDB_LOGO} width="42px" style={{ verticalAlign: "text-top" }} />
-              </Link>
-            </Grid2>
-          )}
-
           {youTubeTrailerKey && (
             <Grid2>
               <Tooltip title="Watch Trailer" slotProps={{ tooltip: tooltipStyles }}>
@@ -75,7 +67,7 @@ const MovieHighlight = () => {
 
         <Grid2>
           <Typography variant="body1" sx={typographyStyles} maxWidth="400px">
-            {movie.overview}
+            {movie.overview || movie.Plot}
           </Typography>
         </Grid2>
 
@@ -109,27 +101,23 @@ const MovieHighlight = () => {
           </Grid2>
         </Grid2>
 
-        <Grid2 container gap={2}>
-          <Grid2>
-            <Typography variant="subtitle2" sx={typographyStyles}>
-              {movie.vote_average.toFixed(1)} ({Intl.NumberFormat("en", { notation: "compact" }).format(movie.vote_count)} votes)
-            </Typography>
-          </Grid2>
+        <Grid2 container gap={1} alignItems="center">
+          {imdbId && (
+            <Grid2>
+              <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
+                <img src={IMDB_LOGO} width="42px" style={{ verticalAlign: "text-top" }} />
+              </Link>
+            </Grid2>
+          )}
 
           <Grid2>
             <Typography variant="subtitle2" sx={typographyStyles}>
-              {"N/A"}
-            </Typography>
-          </Grid2>
-
-          <Grid2>
-            <Typography variant="subtitle2" sx={typographyStyles}>
-              {"N/A"}
+              {movie.imdbRating} ({movie.imdbVotes} votes)
             </Typography>
           </Grid2>
         </Grid2>
 
-        <Grid2 container gap={0.5}>
+        <Grid2 container gap={0.5} mt={1}>
           {cast.map(
             (actor) =>
               actor.profile_path && (
