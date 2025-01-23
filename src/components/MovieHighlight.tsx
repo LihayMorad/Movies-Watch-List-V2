@@ -45,7 +45,7 @@ const MovieHighlight = () => {
       <Grid2 container flexDirection="column" gap={1} zIndex={1} padding={2} size={12}>
         <Grid2 container gap={1} alignItems="center" justifyContent="space-between">
           <Grid2 flexGrow={1}>
-            <Typography variant="h5" sx={typographyStyles}>
+            <Typography variant="h5" fontWeight={500} sx={typographyStyles}>
               {movie.title}
             </Typography>
           </Grid2>
