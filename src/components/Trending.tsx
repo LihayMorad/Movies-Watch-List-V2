@@ -3,7 +3,7 @@ import axios from "axios";
 import { Grid2, Typography } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { AuthContext } from "../context/authContext";
-import { TrendingMovie } from "../types/Movie";
+import { TrendingMovie, TMDBTrendingMovie } from "../types/Movie";
 import MovieCard from "./MovieCard/MovieCard";
 
 const Trending = () => {
@@ -13,7 +13,7 @@ const Trending = () => {
   const fetchTrendingMovies = useCallback(async () => {
     try {
       const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${import.meta.env.VITE_TMDB_API_KEY}`;
-      const { data } = await axios.get<{ results: TrendingMovie[] }>(url);
+      const { data } = await axios.get<{ results: TMDBTrendingMovie[] }>(url);
       setMovies(data.results);
     } catch (error) {
       console.log("there was an error fetching the movie", error);

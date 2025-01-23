@@ -4,7 +4,7 @@ export interface OMDBMovie {
   Plot: string;
 }
 
-export interface TrendingMovie {
+export interface TMDBTrendingMovie {
   backdrop_path: string;
   id: number;
   title: string;
@@ -20,7 +20,7 @@ export interface TrendingMovie {
   video: boolean;
 }
 
-export interface Movie extends TrendingMovie, OMDBMovie {
+export interface TMDBMovie extends TMDBTrendingMovie, OMDBMovie {
   genres: {
     id: number;
     name: string;
@@ -42,7 +42,7 @@ export interface Movie extends TrendingMovie, OMDBMovie {
   runtime: number;
   status: string;
   similar: {
-    results: TrendingMovie[];
+    results: TMDBTrendingMovie[];
   };
   videos: {
     results: {
@@ -61,3 +61,6 @@ export interface Movie extends TrendingMovie, OMDBMovie {
     }[];
   };
 }
+
+export interface Movie extends TMDBMovie, TMDBTrendingMovie, OMDBMovie {}
+export interface TrendingMovie extends TMDBTrendingMovie {}

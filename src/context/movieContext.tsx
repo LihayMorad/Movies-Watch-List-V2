@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Movie, OMDBMovie } from "../types/Movie";
+import { Movie, OMDBMovie, TMDBMovie } from "../types/Movie";
 import { AuthContext } from "./authContext";
 
 export const MovieContext = createContext<{
@@ -19,7 +19,7 @@ const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await axios.get<Movie>(
+        const { data } = await axios.get<TMDBMovie>(
           `https://api.themoviedb.org/3/movie/${movieId}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&append_to_response=similar,videos,credits`
         );
 
