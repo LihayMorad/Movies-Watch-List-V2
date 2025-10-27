@@ -4,7 +4,7 @@ import { Movie, TMDBMovie, OMDBMovie } from "../types/Movie";
 import { AuthContext } from "./authContext";
 
 export const MovieContext = createContext<{
-  movie: Movie | null;
+  movie: Partial<Movie> | null;
   setMovieId: React.Dispatch<React.SetStateAction<number | null>>;
 }>({
   movie: null,
