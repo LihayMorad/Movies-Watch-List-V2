@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import { Dialog } from "@mui/material";
 
 const MovieTrailer: FunctionComponent<{ open: boolean; handleClose: () => void; trailerKey?: string }> = ({

@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import { collection, getDocs, doc, getDoc, DocumentData } from "firebase/firestore";
+import { collection, getDocs, /*doc, getDoc,*/ type DocumentData } from "firebase/firestore";
 import { AuthContext } from "../../context/authContext";
 import { firestore } from "../../config/firebase";
 
@@ -24,22 +24,22 @@ const MoviesList = () => {
     }
   }, [user?.uid]);
 
-  const fetchMovie = useCallback(async () => {
-    try {
-      const movieId = "wqhJTn7XzeZJfGUWIOZ5";
-      const docRef = doc(firestore, `mymovies/${user?.uid}/movies/${movieId}`);
-      const docSnap = await getDoc(docRef);
+  // const fetchMovie = useCallback(async () => {
+  //   try {
+  //     const movieId = "wqhJTn7XzeZJfGUWIOZ5";
+  //     const docRef = doc(firestore, `mymovies/${user?.uid}/movies/${movieId}`);
+  //     const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    } catch (error) {
-      console.log("there was an error fetching the movie", error);
-    }
-  }, [user?.uid]);
+  //     if (docSnap.exists()) {
+  //       console.log("Document data:", docSnap.data());
+  //     } else {
+  //       // docSnap.data() will be undefined in this case
+  //       console.log("No such document!");
+  //     }
+  //   } catch (error) {
+  //     console.log("there was an error fetching the movie", error);
+  //   }
+  // }, [user?.uid]);
 
   useEffect(() => {
     if (user?.uid) fetchMovies();

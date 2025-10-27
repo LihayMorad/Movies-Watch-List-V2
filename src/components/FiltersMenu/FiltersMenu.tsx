@@ -1,4 +1,4 @@
-import { useContext, ChangeEvent } from "react";
+import { useContext, type ChangeEvent } from "react";
 import {
   Checkbox,
   FormControl,
@@ -7,11 +7,11 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
+  type SelectChangeEvent,
   TextField,
   Tooltip,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import {
   ExpandMoreRounded as ExpandMoreRoundedIcon,
   RemoveRedEye as RemoveRedEyeIcon,
@@ -20,7 +20,7 @@ import {
 } from "@mui/icons-material";
 import { AuthContext } from "../../context/authContext";
 import { FiltersContext } from "../../context/filtersContext";
-import { Filters } from "../../types/Filters";
+import { type Filters } from "../../types/Filters";
 
 const tooltipStyles = {
   sx: { color: "white", backgroundColor: "black" },

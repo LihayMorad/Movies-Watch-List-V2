@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Box, Card } from "@mui/material";
-import { Movie } from "../../types/Movie";
+import type { TrendingMovie } from "../../types/Movie";
 import { MovieContext } from "../../context/movieContext";
 
 const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-const MovieCard = ({ movie }: { movie: Movie }) => {
+const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
   const { setMovieId } = useContext(MovieContext);
 
   return (

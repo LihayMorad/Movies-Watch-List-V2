@@ -1,9 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Grid2, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { AuthContext } from "../context/authContext";
-import { TrendingMovie, TMDBTrendingMovie } from "../types/Movie";
+import type { TrendingMovie, TMDBTrendingMovie } from "../types/Movie";
 import MovieCard from "./MovieCard/MovieCard";
 
 const Trending = () => {
@@ -27,18 +27,18 @@ const Trending = () => {
   if (!user) return null;
 
   return (
-    <Grid2 container alignItems="center" flexDirection="column">
+    <Grid container alignItems="center" flexDirection="column">
       <Typography variant="h6" color="warning">
         <WhatshotIcon fontSize="inherit" sx={{ marginRight: "4px" }} />
         Trending
       </Typography>
 
-      <Grid2 container gap={1} justifyContent="center">
+      <Grid container gap={1} justifyContent="center">
         {movies?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-      </Grid2>
+      </Grid>
 
-      <Grid2></Grid2>
-    </Grid2>
+      <Grid></Grid>
+    </Grid>
   );
 };
 

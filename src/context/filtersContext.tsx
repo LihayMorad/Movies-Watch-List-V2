@@ -1,5 +1,5 @@
-import { createContext, FunctionComponent, useEffect, useState } from "react";
-import { Filters } from "../types/Filters";
+import { createContext, type FunctionComponent, useEffect, useState } from "react";
+import type { Filters } from "../types/Filters";
 
 const FILTERS_STORAGE_KEY = "filters";
 

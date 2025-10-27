@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Movie, TMDBMovie, OMDBMovie } from "../types/Movie";
+import type { Movie, TMDBMovie, OMDBMovie } from "../types/Movie";
 import { AuthContext } from "./authContext";
 
 export const MovieContext = createContext<{

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Grid2, Box, Typography, Chip, Tooltip, IconButton, Link } from "@mui/material";
+import { Grid, Box, Typography, Chip, Tooltip, IconButton, Link } from "@mui/material";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import IMDB_LOGO from "../assets/IMDb_Logo.png";
 import { MovieContext } from "../context/movieContext";
@@ -9,13 +9,9 @@ const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 const TMDB_IMAGE_SIZE_ORIGINAL = "original";
 const TMDB_IMAGE_SIZE_W200 = "w200";
 
-const typographyStyles = {
-  textShadow: "black 1px 0 10px",
-};
+const typographyStyles = { textShadow: "black 1px 0 10px" };
 
-const tooltipStyles = {
-  sx: { backgroundColor: "black", color: "white" },
-};
+const tooltipStyles = { sx: { backgroundColor: "black", color: "white" } };
 
 const MovieHighlight = () => {
   const { movie } = useContext(MovieContext);
@@ -26,10 +22,10 @@ const MovieHighlight = () => {
   const imdbId = movie.imdb_id;
   const youTubeTrailer = movie.videos?.results.find((video) => video.official && video.site === "YouTube" && video.type === "Trailer");
   const youTubeTrailerKey = youTubeTrailer?.key;
-  const cast = movie.credits.cast.slice(0, 3);
+  const cast = movie?.credits?.cast.slice(0, 3);
 
   return (
-    <Grid2 container width="1070px" height="600px">
+    <Grid container width="1070px" height="600px">
       <Box
         position="absolute"
         width="inherit"
@@ -42,16 +38,16 @@ const MovieHighlight = () => {
         }}
       />
 
-      <Grid2 container flexDirection="column" gap={1} zIndex={1} padding={2} size={12}>
-        <Grid2 container gap={1} alignItems="center" justifyContent="space-between">
-          <Grid2 flexGrow={1}>
+      <Grid container flexDirection="column" gap={1} zIndex={1} padding={2} size={12}>
+        <Grid container gap={1} alignItems="center" justifyContent="space-between">
+          <Grid flexGrow={1}>
             <Typography variant="h5" fontWeight={500} sx={typographyStyles}>
               {movie.title}
             </Typography>
-          </Grid2>
+          </Grid>
 
           {youTubeTrailerKey && (
-            <Grid2>
+            <Grid>
               <Tooltip title="Watch Trailer" slotProps={{ tooltip: tooltipStyles }}>
                 <IconButton sx={{ p: 0 }}>
                   <YouTubeIcon
@@ -61,31 +57,31 @@ const MovieHighlight = () => {
                   />
                 </IconButton>
               </Tooltip>
-            </Grid2>
+            </Grid>
           )}
-        </Grid2>
+        </Grid>
 
-        <Grid2>
+        <Grid>
           <Typography variant="body1" sx={typographyStyles} maxWidth="400px">
             {movie.overview || movie.Plot}
           </Typography>
-        </Grid2>
+        </Grid>
 
-        <Grid2 container gap={3} alignItems="center">
-          <Grid2>
+        <Grid container gap={3} alignItems="center">
+          <Grid>
             <Typography variant="subtitle2" sx={typographyStyles}>
               {movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : "N/A"}
             </Typography>
-          </Grid2>
+          </Grid>
 
-          <Grid2>
+          <Grid>
             <Typography variant="subtitle2" sx={typographyStyles}>
-              {new Date(movie.release_date).getFullYear()}
+              {!!movie.release_date && new Date(movie.release_date).getFullYear()}
             </Typography>
-          </Grid2>
+          </Grid>
 
-          <Grid2 container gap={1}>
-            {movie.genres.map((genre) => (
+          <Grid container gap={1}>
+            {movie.genres?.map((genre) => (
               <Chip
                 key={genre.id}
                 size="small"
@@ -98,30 +94,30 @@ const MovieHighlight = () => {
                 sx={{ borderColor: "white", "& .MuiChip-label": { px: 1.5 } }}
               />
             ))}
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
 
-        <Grid2 container gap={1} alignItems="center">
+        <Grid container gap={1} alignItems="center">
           {imdbId && (
-            <Grid2>
+            <Grid>
               <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
                 <img src={IMDB_LOGO} width="42px" style={{ verticalAlign: "text-top" }} />
               </Link>
-            </Grid2>
+            </Grid>
           )}
 
-          <Grid2>
+          <Grid>
             <Typography variant="subtitle2" sx={typographyStyles}>
               {movie.imdbRating} ({movie.imdbVotes} votes)
             </Typography>
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
 
-        <Grid2 container gap={0.5} mt={1}>
-          {cast.map(
+        <Grid container gap={0.5} mt={1}>
+          {cast?.map(
             (actor) =>
               actor.profile_path && (
-                <Grid2 key={actor.id} height="130px" borderRadius={2} position="relative">
+                <Grid key={actor.id} height="130px" borderRadius={2} position="relative">
                   <Box
                     component="img"
                     height="100%"
@@ -142,14 +138,14 @@ const MovieHighlight = () => {
                   >
                     {actor.name}
                   </Typography>
-                </Grid2>
+                </Grid>
               )
           )}
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
 
       <MovieTrailer trailerKey={youTubeTrailerKey} open={trailerDialogOpened} handleClose={() => setTrailerDialogOpened(false)} />
-    </Grid2>
+    </Grid>
   );
 };
 
