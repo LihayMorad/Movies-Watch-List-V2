@@ -10,7 +10,7 @@ const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 const TMDB_IMAGE_SIZE_ORIGINAL = "original";
 const TMDB_IMAGE_SIZE_W200 = "w200";
 
-const typographyStyles = { textShadow: "black 1px 0 10px" };
+const typographyStyles = { textShadow: "black 1px 0 10px", color: "white" };
 
 const tooltipStyles = { sx: { backgroundColor: "black", color: "white" } };
 
@@ -129,10 +129,15 @@ const MovieHighlight = () => {
                     boxShadow="0 0 20px 0px #000000"
                   />
                   <Typography
+                    component="a"
+                    href={`https://en.wikipedia.org/wiki/${actor.name.trim()}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     variant="subtitle2"
                     fontSize="12px"
                     sx={typographyStyles}
                     width="100%"
+                    display="block"
                     position="absolute"
                     bottom={0}
                     textAlign="center"
