@@ -119,7 +119,16 @@ const MovieHighlight = () => {
           {cast?.map(
             (actor) =>
               actor.profile_path && (
-                <Grid key={actor.id} height="160px" borderRadius={2} position="relative">
+                <Grid
+                  key={actor.id}
+                  height="160px"
+                  borderRadius={2}
+                  position="relative"
+                  component="a"
+                  href={`https://en.wikipedia.org/wiki/${actor.name.trim()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Box
                     component="img"
                     height="100%"
@@ -129,11 +138,8 @@ const MovieHighlight = () => {
                     borderRadius="inherit"
                     boxShadow="0 0 20px 0px #000000"
                   />
+
                   <Typography
-                    component="a"
-                    href={`https://en.wikipedia.org/wiki/${actor.name.trim()}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     variant="subtitle2"
                     fontSize="14px"
                     sx={typographyStyles}
