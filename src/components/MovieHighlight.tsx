@@ -82,37 +82,37 @@ const MovieHighlight = () => {
             </Typography>
           </Grid>
 
-          <Grid container gap={1}>
-            {movie.genres?.map((genre) => (
-              <Chip
-                key={genre.id}
-                size="small"
-                variant="outlined"
-                label={
-                  <Typography variant="subtitle2" color="#ffffff" sx={typographyStyles}>
-                    {genre.name}
-                  </Typography>
-                }
-                sx={{ borderColor: "white", "& .MuiChip-label": { px: 1.5 } }}
-              />
-            ))}
+          <Grid container gap={1} alignItems="center">
+            {imdbId && (
+              <Grid>
+                <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
+                  <img src={IMDB_LOGO} width="42px" style={{ verticalAlign: "text-top" }} />
+                </Link>
+              </Grid>
+            )}
+
+            <Grid>
+              <Typography variant="subtitle2" sx={typographyStyles}>
+                {movie.imdbRating} ({movie.imdbVotes} votes)
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
 
-        <Grid container gap={1} alignItems="center">
-          {imdbId && (
-            <Grid>
-              <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
-                <img src={IMDB_LOGO} width="42px" style={{ verticalAlign: "text-top" }} />
-              </Link>
-            </Grid>
-          )}
-
-          <Grid>
-            <Typography variant="subtitle2" sx={typographyStyles}>
-              {movie.imdbRating} ({movie.imdbVotes} votes)
-            </Typography>
-          </Grid>
+        <Grid container gap={1}>
+          {movie.genres?.map((genre) => (
+            <Chip
+              key={genre.id}
+              size="small"
+              variant="outlined"
+              label={
+                <Typography variant="subtitle2" color="#ffffff" sx={typographyStyles}>
+                  {genre.name}
+                </Typography>
+              }
+              sx={{ borderColor: "white", "& .MuiChip-label": { px: 1.5 } }}
+            />
+          ))}
         </Grid>
 
         <Grid container gap={0.5} mt="auto" position="relative">
