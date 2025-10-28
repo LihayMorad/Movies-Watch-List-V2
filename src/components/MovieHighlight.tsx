@@ -114,7 +114,7 @@ const MovieHighlight = () => {
           </Grid>
         </Grid>
 
-        <Grid container gap={0.5} mt={1}>
+        <Grid container gap={0.5} mt="auto" position="relative">
           {cast?.map(
             (actor) =>
               actor.profile_path && (
@@ -147,19 +147,19 @@ const MovieHighlight = () => {
                 </Grid>
               )
           )}
-        </Grid>
-      </Grid>
 
-      <Grid width="100%" sx={{ textAlign: "center", marginTop: "auto", marginBottom: "16px" }}>
-        <Tooltip
-          title="Add movie to your watch list"
-          arrow
-          slotProps={{ popper: { modifiers: [{ name: "offset", options: { offset: [0, -4] } }] } }}
-        >
-          <Fab color="primary" size="medium">
-            <AddIcon />
-          </Fab>
-        </Tooltip>
+          <Grid sx={{ position: "absolute", left: "50%", top: "calc(100% - 24px)", transform: "translate(-50%, -50%)" }}>
+            <Tooltip
+              title="Add movie to your watch list"
+              arrow
+              slotProps={{ popper: { modifiers: [{ name: "offset", options: { offset: [0, -4] } }] } }}
+            >
+              <Fab color="primary" size="medium">
+                <AddIcon />
+              </Fab>
+            </Tooltip>
+          </Grid>
+        </Grid>
       </Grid>
 
       <MovieTrailer trailerKey={youTubeTrailerKey} open={trailerDialogOpened} handleClose={() => setTrailerDialogOpened(false)} />
