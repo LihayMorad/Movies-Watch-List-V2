@@ -77,7 +77,8 @@ const MovieHighlight = () => {
 
           <Grid>
             <Typography variant="subtitle2" sx={typographyStyles}>
-              {!!movie.release_date && new Date(movie.release_date).getFullYear()}
+              {!!movie.release_date &&
+                new Date(movie.release_date).toLocaleDateString(undefined, { year: "numeric", month: "numeric", day: "numeric" })}
             </Typography>
           </Grid>
 
