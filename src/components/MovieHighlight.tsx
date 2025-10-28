@@ -135,13 +135,14 @@ const MovieHighlight = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="subtitle2"
-                    fontSize="12px"
+                    fontSize="14px"
                     sx={typographyStyles}
                     width="100%"
                     display="block"
                     position="absolute"
                     bottom={0}
                     textAlign="center"
+                    padding="0 4px"
                   >
                     {actor.name}
                   </Typography>
