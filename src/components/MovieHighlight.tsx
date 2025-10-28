@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { Grid, Box, Typography, Chip, Tooltip, IconButton, Link } from "@mui/material";
+import { Grid, Box, Typography, Chip, Tooltip, IconButton, Link, Fab } from "@mui/material";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import AddIcon from "@mui/icons-material/Add";
 import IMDB_LOGO from "../assets/IMDb_Logo.png";
 import { MovieContext } from "../context/movieContext";
 import MovieTrailer from "./MovieTrailer/MovieTrailer";
@@ -142,6 +143,18 @@ const MovieHighlight = () => {
               )
           )}
         </Grid>
+      </Grid>
+
+      <Grid width="100%" sx={{ textAlign: "center", marginTop: "auto", marginBottom: "16px" }}>
+        <Tooltip
+          title="Add movie to your watch list"
+          arrow
+          slotProps={{ popper: { modifiers: [{ name: "offset", options: { offset: [0, -4] } }] } }}
+        >
+          <Fab color="primary" size="medium">
+            <AddIcon />
+          </Fab>
+        </Tooltip>
       </Grid>
 
       <MovieTrailer trailerKey={youTubeTrailerKey} open={trailerDialogOpened} handleClose={() => setTrailerDialogOpened(false)} />
