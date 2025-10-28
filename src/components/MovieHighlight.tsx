@@ -119,7 +119,7 @@ const MovieHighlight = () => {
           {cast?.map(
             (actor) =>
               actor.profile_path && (
-                <Grid key={actor.id} height="130px" borderRadius={2} position="relative">
+                <Grid key={actor.id} height="160px" borderRadius={2} position="relative">
                   <Box
                     component="img"
                     height="100%"
