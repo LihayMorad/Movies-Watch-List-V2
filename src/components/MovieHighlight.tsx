@@ -6,9 +6,7 @@ import IMDB_LOGO from "../assets/IMDb_Logo.png";
 import { MovieContext } from "../context/movieContext";
 import MovieTrailer from "./MovieTrailer/MovieTrailer";
 
-const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
-const TMDB_IMAGE_SIZE_ORIGINAL = "original";
-const TMDB_IMAGE_SIZE_W200 = "w200";
+const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
 const typographyStyles = { textShadow: "black 1px 0 10px", color: "white" };
 
@@ -32,7 +30,7 @@ const MovieHighlight = () => {
         width="inherit"
         height="inherit"
         sx={{
-          background: `url(${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE_ORIGINAL}${movie.backdrop_path}) no-repeat`,
+          background: `url(${TMDB_IMAGE_BASE_URL}/original${movie.backdrop_path}) no-repeat`,
           backgroundSize: "contain",
           maskImage: "linear-gradient(to right, black 75%, transparent 100%)",
           opacity: 0.8,
@@ -132,7 +130,7 @@ const MovieHighlight = () => {
                   <Box
                     component="img"
                     height="100%"
-                    src={`${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE_W200}${actor.profile_path}`}
+                    src={`${TMDB_IMAGE_BASE_URL}/w200${actor.profile_path}`}
                     alt={movie.title}
                     loading="lazy"
                     borderRadius="inherit"

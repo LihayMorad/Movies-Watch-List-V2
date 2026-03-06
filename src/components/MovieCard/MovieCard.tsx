@@ -3,7 +3,7 @@ import { Box, Card } from "@mui/material";
 import type { TrendingMovie } from "../../types/Movie";
 import { MovieContext } from "../../context/movieContext";
 
-const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
+const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
 const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
   const { setMovieId } = useContext(MovieContext);
@@ -31,7 +31,7 @@ const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
         component="img"
         maxWidth="100%"
         height="100%"
-        src={`${TMDB_POSTER_BASE_URL}${movie.poster_path}`}
+        src={`${TMDB_IMAGE_BASE_URL}/w500${movie.poster_path}`}
         alt={movie.title}
         loading="lazy"
       />

@@ -6,13 +6,16 @@ import { AuthContext } from "../context/authContext";
 import type { TrendingMovie, TMDBTrendingMovie } from "../types/Movie";
 import MovieCard from "./MovieCard/MovieCard";
 
+const VITE_TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
+const VITE_TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 const Trending = () => {
   const { user } = useContext(AuthContext);
   const [movies, setMovies] = useState<TrendingMovie[]>([]);
 
   const fetchTrendingMovies = useCallback(async () => {
     try {
-      const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${import.meta.env.VITE_TMDB_API_KEY}`;
+      const url = `${VITE_TMDB_API_URL}/trending/movie/week?api_key=${VITE_TMDB_API_KEY}`;
       const { data } = await axios.get<{ results: TMDBTrendingMovie[] }>(url);
       setMovies(data.results);
     } catch (error) {
@@ -34,7 +37,9 @@ const Trending = () => {
       </Typography>
 
       <Grid container gap={1} justifyContent="center">
-        {movies?.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+        {movies?.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
       </Grid>
 
       <Grid></Grid>
