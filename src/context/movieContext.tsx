@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import type { Movie, TMDBMovie, OMDBMovie } from "../types/Movie";
 import { AuthContext } from "./authContext";
@@ -36,16 +36,15 @@ const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode 
     if (user?.uid && movieId) fetchMovie();
   }, [user, movieId]);
 
-  return (
-    <MovieContext.Provider
-      value={{
-        movie,
-        setMovieId,
-      }}
-    >
-      {children}
-    </MovieContext.Provider>
+  const value = useMemo(
+    () => ({
+      movie,
+      setMovieId,
+    }),
+    [movie]
   );
+
+  return <MovieContext.Provider value={value}>{children}</MovieContext.Provider>;
 };
 
 export default MovieContextProvider;
