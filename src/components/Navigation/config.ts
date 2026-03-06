@@ -6,5 +6,5 @@ export const TRENDING_TAB = "Trending";
 
 export const tabs = [
   { id: WATCHLIST_TAB, label: WATCHLIST_TAB, icon: SubscriptionsIcon, color: "#ffffff" },
-  { id: TRENDING_TAB, label: TRENDING_TAB, icon: WhatshotIcon, color: "warning" },
+  { id: TRENDING_TAB, label: TRENDING_TAB, icon: WhatshotIcon, color: "#ed6c02" },
 ];

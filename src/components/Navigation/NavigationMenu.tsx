@@ -1,4 +1,4 @@
-import { Grid, Link } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { tabs } from "./config";
 
 interface NavigationMenuProps {
@@ -11,17 +11,23 @@ const NavigationMenu = ({ activeTab, onTabChange }: NavigationMenuProps) => {
     <Grid container alignItems="center" gap="24px" height="50px" paddingX="24px" borderRadius="50px" sx={{ backgroundColor: "#091c2f" }}>
       {tabs.map((tab) => {
         const IconComponent = tab.icon;
+
         return (
           <Grid key={tab.id}>
-            <Link
-              variant="subtitle1"
+            <Button
+              disableRipple
+              variant="text"
+              startIcon={<IconComponent fontSize="inherit" />}
               onClick={() => onTabChange(tab.id)}
-              underline={activeTab === tab.id ? "always" : "hover"}
-              color={tab.color}
+              sx={{
+                color: tab.color,
+                textTransform: "none",
+                fontWeight: activeTab === tab.id ? 500 : 400,
+                "& .MuiButton-startIcon": { marginRight: "4px" },
+              }}
             >
-              <IconComponent fontSize="inherit" sx={{ marginRight: "4px" }} />
               {tab.label}
-            </Link>
+            </Button>
           </Grid>
         );
       })}
