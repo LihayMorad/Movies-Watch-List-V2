@@ -1,26 +1,22 @@
-import { useState } from "react";
 import { Grid, Link } from "@mui/material";
-import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
+import { tabs } from "./config";
 
-const tabs = [
-  { label: "Watchlist", icon: SubscriptionsIcon, color: "#ffffff" },
-  { label: "Trending", icon: WhatshotIcon, color: "warning" },
-];
+interface NavigationMenuProps {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}
 
-const NavigationMenu = () => {
-  const [activeRoute, setActiveRoute] = useState(tabs[0].label);
-
+const NavigationMenu = ({ activeTab, onTabChange }: NavigationMenuProps) => {
   return (
     <Grid container alignItems="center" gap="24px" height="50px" paddingX="24px" borderRadius="50px" sx={{ backgroundColor: "#091c2f" }}>
       {tabs.map((tab) => {
         const IconComponent = tab.icon;
         return (
-          <Grid key={tab.label}>
+          <Grid key={tab.id}>
             <Link
               variant="subtitle1"
-              onClick={() => setActiveRoute(tab.label)}
-              underline={activeRoute === tab.label ? "always" : "hover"}
+              onClick={() => onTabChange(tab.id)}
+              underline={activeTab === tab.id ? "always" : "hover"}
               color={tab.color}
             >
               <IconComponent fontSize="inherit" sx={{ marginRight: "4px" }} />
