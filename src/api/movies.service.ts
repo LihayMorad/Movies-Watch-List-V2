@@ -1,7 +1,10 @@
 import axios from "axios";
 import type { Movie, OMDBMovie, TMDBMovie, TMDBTrendingMovie } from "../types/Movie";
 
-const { VITE_TMDB_API_URL, VITE_TMDB_API_KEY, VITE_OMDB_API_URL, VITE_OMDB_API_KEY } = import.meta.env;
+const VITE_TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
+const VITE_TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const VITE_OMDB_API_URL = import.meta.env.VITE_OMDB_API_URL;
+const VITE_OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
 export const fetchTMDBMovie = async (movieId: number | string): Promise<TMDBMovie> => {
   try {

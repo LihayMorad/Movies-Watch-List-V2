@@ -6,7 +6,7 @@ import IMDB_LOGO from "../assets/IMDb_Logo.png";
 import { MovieContext } from "../context/movieContext";
 import MovieTrailer from "./MovieTrailer/MovieTrailer";
 
-const { TMDB_IMAGE_BASE_URL } = import.meta.env;
+const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
 const typographyStyles = { textShadow: "black 1px 0 10px", color: "white" };
 
