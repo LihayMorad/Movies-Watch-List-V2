@@ -1,4 +1,4 @@
-import { createContext, type FunctionComponent, useEffect, useMemo, useState } from "react";
+import { createContext, type FunctionComponent, useEffect, useState } from "react";
 import type { Filters } from "../types/Filters";
 
 const FILTERS_STORAGE_KEY = "filters";
@@ -42,15 +42,7 @@ const FiltersContextProvider: FunctionComponent<{
     });
   };
 
-  const value = useMemo(
-    () => ({
-      filters,
-      updateFilters,
-    }),
-    [filters]
-  );
-
-  return <FiltersContext.Provider value={value}>{children}</FiltersContext.Provider>;
+  return <FiltersContext.Provider value={{ filters, updateFilters }}>{children}</FiltersContext.Provider>;
 };
 
 export default FiltersContextProvider;
