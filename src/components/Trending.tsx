@@ -30,7 +30,7 @@ const Trending = () => {
 
       <Grid container gap={1} justifyContent="center">
         {movies?.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard key={movie.id} movie={movie} isTrending={true} />
         ))}
       </Grid>
 

@@ -5,7 +5,7 @@ import { MovieContext } from "../../context/movieContext";
 
 const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
-const MovieCard = ({ movie }: { movie: Partial<Movie> }) => {
+const MovieCard = ({ isTrending = false, movie }: { isTrending?: boolean; movie: Partial<Movie> }) => {
   const { setMovieId } = useContext(MovieContext);
 
   return (
@@ -23,7 +23,7 @@ const MovieCard = ({ movie }: { movie: Partial<Movie> }) => {
         "&:hover": {
           transform: "scale(1.05)",
           filter: "brightness(1.1)",
-          outline: `1px solid ${theme.palette.warning.main}`,
+          outline: `2px solid ${isTrending ? theme.palette.warning.main : theme.palette.primary.main}`,
         },
       })}
     >
