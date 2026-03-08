@@ -3,7 +3,7 @@ import { Box, Card } from "@mui/material";
 import type { Movie } from "../../types/Movie";
 import { MovieContext } from "../../context/movieContext";
 
-const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
+const { TMDB_IMAGE_BASE_URL } = import.meta.env;
 
 const MovieCard = ({ movie }: { movie: Partial<Movie> }) => {
   const { setMovieId } = useContext(MovieContext);
