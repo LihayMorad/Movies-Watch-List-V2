@@ -1,12 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import axios from "axios";
-import type { Movie, TMDBMovie, OMDBMovie } from "../types/Movie";
+import { fetchMovieData } from "../api/movies.service";
+import type { Movie } from "../types/Movie";
 import { AuthContext } from "./authContext";
-
-const VITE_TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
-const VITE_TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-const VITE_OMDB_API_URL = import.meta.env.VITE_OMDB_API_URL;
-const VITE_OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
 export const MovieContext = createContext<{
   movie: Partial<Movie> | null;
@@ -22,23 +17,12 @@ const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode 
   const [movie, setMovie] = useState<Partial<Movie> | null>(null);
 
   useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const { data } = await axios.get<TMDBMovie>(
-          `${VITE_TMDB_API_URL}/movie/${movieId}?api_key=${VITE_TMDB_API_KEY}&append_to_response=similar,videos,credits`
-        );
-
-        const {
-          data: { imdbRating, imdbVotes, Plot },
-        } = await axios.get<OMDBMovie>(`${VITE_OMDB_API_URL}/?i=${data.imdb_id}&type=movie&apikey=${VITE_OMDB_API_KEY}`);
-
-        setMovie({ ...data, imdbRating, imdbVotes, Plot });
-      } catch (error) {
-        console.log("there was an error fetching the movie", error);
-      }
-    };
-
-    if (user?.uid && movieId) fetchMovie();
+    if (user?.uid && movieId) {
+      (async () => {
+        const movieData = await fetchMovieData(movieId);
+        setMovie(movieData);
+      })();
+    }
   }, [user, movieId]);
 
   const value = useMemo(

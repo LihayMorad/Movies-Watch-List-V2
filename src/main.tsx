@@ -4,8 +4,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
+  <>
     <CssBaseline />
     <App />
-  </StrictMode>
+  </>
+  // </StrictMode>
 );

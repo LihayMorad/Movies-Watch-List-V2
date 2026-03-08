@@ -1,30 +1,22 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { AuthContext } from "../context/authContext";
-import type { TrendingMovie, TMDBTrendingMovie } from "../types/Movie";
+import { fetchTrendingMovies } from "../api/movies.service";
+import type { TrendingMovie } from "../types/Movie";
 import MovieCard from "./MovieCard/MovieCard";
-
-const VITE_TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
-const VITE_TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const Trending = () => {
   const { user } = useContext(AuthContext);
   const [movies, setMovies] = useState<TrendingMovie[]>([]);
 
-  const fetchTrendingMovies = useCallback(async () => {
-    try {
-      const url = `${VITE_TMDB_API_URL}/trending/movie/week?api_key=${VITE_TMDB_API_KEY}`;
-      const { data } = await axios.get<{ results: TMDBTrendingMovie[] }>(url);
-      setMovies(data.results);
-    } catch (error) {
-      console.log("there was an error fetching the movie", error);
-    }
-  }, [user?.uid]);
-
   useEffect(() => {
-    if (user?.uid) fetchTrendingMovies();
+    if (user?.uid) {
+      (async () => {
+        const trendingMovies = await fetchTrendingMovies();
+        setMovies(trendingMovies);
+      })();
+    }
   }, [user, fetchTrendingMovies]);
 
   if (!user) return null;

@@ -1,60 +1,34 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { collection, getDocs, /*doc, getDoc,*/ type DocumentData } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import { Grid } from "@mui/material";
 import { AuthContext } from "../../context/authContext";
-import { firestore } from "../../config/firebase";
+import { fetchMovies } from "../../api/firestore.service";
+import type { FirestoreMovie } from "../../types/Movie";
+import { Movie } from "../Movie/Movie";
 
 const MoviesList = () => {
   const { user } = useContext(AuthContext);
-  const [movies, setMovies] = useState<DocumentData[]>([]);
-
-  //   console.log(user); // uid, email, displayName, isAnonymous
-
-  const fetchMovies = useCallback(async () => {
-    try {
-      const moviesCollection = await getDocs(collection(firestore, `mymovies/${user?.uid}/movies`));
-      //   console.log("moviesCollection", moviesCollection);
-
-      setMovies(moviesCollection.docs.map((item) => item.data()));
-
-      //   moviesCollection.forEach((doc) => {
-      //     console.log("doc", doc.id, doc.data());
-      //   });
-    } catch (error) {
-      console.log("there was an error fetching the movies list", error);
-    }
-  }, [user?.uid]);
-
-  // const fetchMovie = useCallback(async () => {
-  //   try {
-  //     const movieId = "wqhJTn7XzeZJfGUWIOZ5";
-  //     const docRef = doc(firestore, `mymovies/${user?.uid}/movies/${movieId}`);
-  //     const docSnap = await getDoc(docRef);
-
-  //     if (docSnap.exists()) {
-  //       console.log("Document data:", docSnap.data());
-  //     } else {
-  //       // docSnap.data() will be undefined in this case
-  //       console.log("No such document!");
-  //     }
-  //   } catch (error) {
-  //     console.log("there was an error fetching the movie", error);
-  //   }
-  // }, [user?.uid]);
+  const [movies, setMovies] = useState<FirestoreMovie[]>([]);
 
   useEffect(() => {
-    if (user?.uid) fetchMovies();
-  }, [user, fetchMovies]);
+    if (user?.uid) {
+      (async () => {
+        const movies = await fetchMovies(user.uid);
+        console.log("movies", movies);
+        setMovies(movies);
+      })();
+    }
+  }, [user]);
 
   if (!user) return null;
 
-  return (
-    <ul>
-      {movies.map((movie) => {
-        // console.log(movie);
+  console.log("movies", movies);
 
-        return <li>{movie.NameEng}</li>;
+  return (
+    <Grid container gap={1} justifyContent="center">
+      {movies.map((movie) => {
+        return <Movie key={movie.id} movie={movie} />;
       })}
-    </ul>
+    </Grid>
   );
 };
 

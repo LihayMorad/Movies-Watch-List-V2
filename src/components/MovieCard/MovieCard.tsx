@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import { Box, Card } from "@mui/material";
-import type { TrendingMovie } from "../../types/Movie";
+import type { Movie } from "../../types/Movie";
 import { MovieContext } from "../../context/movieContext";
 
 const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
-const MovieCard = ({ movie }: { movie: TrendingMovie }) => {
+const MovieCard = ({ movie }: { movie: Partial<Movie> }) => {
   const { setMovieId } = useContext(MovieContext);
 
   return (
     <Card
       key={movie.id}
-      onClick={() => setMovieId(movie.id)}
+      onClick={() => setMovieId(movie.id as number)}
       sx={(theme) => ({
         width: "220px",
         height: "337px",

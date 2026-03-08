@@ -1,3 +1,16 @@
+export interface FirestoreMovie {
+  id: string;
+  imdbRating: string;
+  imdbID: string;
+  Comments: string;
+  NameHeb: string;
+  Year: number;
+  Poster: string;
+  Watched: boolean;
+  imdbRatingTimestamp: number;
+  NameEng: string;
+}
+
 export interface OMDBMovie {
   imdbRating: string;
   imdbVotes: string;
@@ -64,4 +77,3 @@ export interface TMDBMovie {
 
 export interface Movie extends TMDBMovie, TMDBTrendingMovie, OMDBMovie {}
 export interface TrendingMovie extends TMDBTrendingMovie {}
-export type blabla = TMDBMovie&TMDBTrendingMovie&OMDBMovie
