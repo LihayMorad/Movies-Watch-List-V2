@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { Menu, MenuItem, Tooltip, Button, IconButton } from "@mui/material";
+import { Menu, MenuItem, Tooltip, Button, IconButton, Stack } from "@mui/material";
 import { AccountCircle as AccountCircleIcon, Person as PersonIcon, PersonOutline as PersonOutlineIcon } from "@mui/icons-material";
 import { AuthContext } from "../../context/authContext";
 
@@ -58,7 +58,7 @@ const UserMenu = () => {
             </Button>
           </MenuItem>
         ) : (
-          <>
+          <Stack>
             <Tooltip title="Login using your Google account" placement="left" slotProps={{ tooltip: tooltipStyles }}>
               <MenuItem sx={menuItemStyles}>
                 <Button color="primary" variant="contained" onClick={handleSignIn} sx={buttonStyles}>
@@ -76,7 +76,7 @@ const UserMenu = () => {
                 </Button>
               </MenuItem>
             </Tooltip>
-          </>
+          </Stack>
         )}
       </Menu>
     </>
