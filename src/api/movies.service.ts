@@ -8,8 +8,9 @@ const VITE_OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
 export const fetchTMDBMovie = async (movieId: number | string): Promise<TMDBMovie> => {
   try {
-    const url = `${VITE_TMDB_API_URL}/movie/${movieId}?api_key=${VITE_TMDB_API_KEY}&append_to_response=similar,videos,credits`;
-    const { data } = await axios.get<TMDBMovie>(url);
+    const { data } = await axios.get<TMDBMovie>(`${VITE_TMDB_API_URL}/movie/${movieId}`, {
+      params: { api_key: VITE_TMDB_API_KEY, append_to_response: "similar,videos,credits" },
+    });
 
     return data;
   } catch (error) {
@@ -20,8 +21,9 @@ export const fetchTMDBMovie = async (movieId: number | string): Promise<TMDBMovi
 
 export const fetchOMDBMovie = async (imdbId: string): Promise<OMDBMovie> => {
   try {
-    const url = `${VITE_OMDB_API_URL}/?i=${imdbId}&type=movie&apikey=${VITE_OMDB_API_KEY}`;
-    const { data } = await axios.get<OMDBMovie>(url);
+    const { data } = await axios.get<OMDBMovie>(`${VITE_OMDB_API_URL}/`, {
+      params: { apikey: VITE_OMDB_API_KEY, i: imdbId, type: "movie" },
+    });
 
     return data;
   } catch (error) {
@@ -44,8 +46,9 @@ export const fetchMovieData = async (movieId: number | string): Promise<Partial<
 
 export const fetchTrendingMovies = async () => {
   try {
-    const url = `${VITE_TMDB_API_URL}/trending/movie/week?api_key=${VITE_TMDB_API_KEY}`;
-    const { data } = await axios.get<{ results: TMDBTrendingMovie[] }>(url);
+    const { data } = await axios.get<{ results: TMDBTrendingMovie[] }>(`${VITE_TMDB_API_URL}/trending/movie/week`, {
+      params: { api_key: VITE_TMDB_API_KEY },
+    });
     return data.results;
   } catch (error) {
     console.log("there was an error fetching the trending movies", error);
