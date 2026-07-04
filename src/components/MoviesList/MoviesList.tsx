@@ -24,12 +24,7 @@ const MoviesList = () => {
   console.log("movies", movies);
 
   return (
-    <Grid
-      container
-      sx={{
-        gap: 1,
-        justifyContent: "center"
-      }}>
+    <Grid container sx={{ gap: 1, justifyContent: "center" }}>
       {movies.map((movie) => {
         return <Movie key={movie.id} movie={movie} />;
       })}

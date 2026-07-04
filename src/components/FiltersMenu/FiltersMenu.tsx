@@ -70,15 +70,8 @@ const FiltersMenu = () => {
   if (!user) return null;
 
   return (
-    <Grid
-      container
-      sx={{
-        justifyContent: "center",
-        gap: 2
-      }}>
-      <Grid sx={{
-        width: "150px"
-      }}>
+    <Grid container sx={{ justifyContent: "center", gap: 2 }}>
+      <Grid sx={{ width: "150px" }}>
         <FormControl fullWidth>
           <InputLabel id="sortBy" sx={{ color: "white" }}>
             Sort By
@@ -100,9 +93,7 @@ const FiltersMenu = () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid sx={{
-        width: "150px"
-      }}>
+      <Grid sx={{ width: "150px" }}>
         <FormControl fullWidth>
           <InputLabel id="orderBy" sx={{ color: "white" }}>
             Order By
@@ -118,13 +109,13 @@ const FiltersMenu = () => {
             sx={selectStyles}
           >
             <MenuItem value="descending">{getOrderLabel(filters.sortBy, "descending")}</MenuItem>
+
             <MenuItem value="ascending">{getOrderLabel(filters.sortBy, "ascending")}</MenuItem>
           </Select>
         </FormControl>
       </Grid>
-      <Grid sx={{
-        width: "100px"
-      }}>
+
+      <Grid sx={{ width: "100px" }}>
         <FormControl fullWidth>
           <InputLabel id="year" sx={{ color: "white" }}>
             Year
@@ -149,9 +140,8 @@ const FiltersMenu = () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid sx={{
-        width: "95px"
-      }}>
+
+      <Grid sx={{ width: "95px" }}>
         <FormControl fullWidth>
           <InputLabel id="maxResults" sx={{ color: "white" }}>
             Max Results
@@ -198,9 +188,8 @@ const FiltersMenu = () => {
           </Tooltip>
         </FormControl>
       </Grid>
-      <Grid sx={{
-        width: "300px"
-      }}>
+
+      <Grid sx={{ width: "300px" }}>
         <TextField
           name="search"
           label="Type movie name"
@@ -216,9 +205,7 @@ const FiltersMenu = () => {
             },
           }}
           sx={{
-            "& .MuiOutlinedInput-root,& .MuiInputLabel-root, & .MuiInputAdornment-root": {
-              color: "white",
-            },
+            "& .MuiOutlinedInput-root,& .MuiInputLabel-root, & .MuiInputAdornment-root": { color: "white" },
             "&, &:hover": {
               "& .MuiOutlinedInput-root.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
                 "&, &.Mui-focused": {
