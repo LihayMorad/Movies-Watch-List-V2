@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Menu, MenuItem, Tooltip, Button, IconButton, Stack } from "@mui/material";
-import { AccountCircle as AccountCircleIcon, Person as PersonIcon, PersonOutline as PersonOutlineIcon } from "@mui/icons-material";
+import { AccountCircle as AccountCircleIcon, Person as PersonIcon, PersonOutlined as PersonOutlineIcon } from "@mui/icons-material";
 import { AuthContext } from "../../context/authContext";
 
 const tooltipStyles = {

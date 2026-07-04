@@ -70,8 +70,15 @@ const FiltersMenu = () => {
   if (!user) return null;
 
   return (
-    <Grid container justifyContent="center" gap={2}>
-      <Grid width="150px">
+    <Grid
+      container
+      sx={{
+        justifyContent: "center",
+        gap: 2
+      }}>
+      <Grid sx={{
+        width: "150px"
+      }}>
         <FormControl fullWidth>
           <InputLabel id="sortBy" sx={{ color: "white" }}>
             Sort By
@@ -93,8 +100,9 @@ const FiltersMenu = () => {
           </Select>
         </FormControl>
       </Grid>
-
-      <Grid width="150px">
+      <Grid sx={{
+        width: "150px"
+      }}>
         <FormControl fullWidth>
           <InputLabel id="orderBy" sx={{ color: "white" }}>
             Order By
@@ -114,8 +122,9 @@ const FiltersMenu = () => {
           </Select>
         </FormControl>
       </Grid>
-
-      <Grid width="100px">
+      <Grid sx={{
+        width: "100px"
+      }}>
         <FormControl fullWidth>
           <InputLabel id="year" sx={{ color: "white" }}>
             Year
@@ -140,8 +149,9 @@ const FiltersMenu = () => {
           </Select>
         </FormControl>
       </Grid>
-
-      <Grid width="95px">
+      <Grid sx={{
+        width: "95px"
+      }}>
         <FormControl fullWidth>
           <InputLabel id="maxResults" sx={{ color: "white" }}>
             Max Results
@@ -164,7 +174,6 @@ const FiltersMenu = () => {
           </Select>
         </FormControl>
       </Grid>
-
       <Grid>
         <FormControl>
           <Tooltip
@@ -189,8 +198,9 @@ const FiltersMenu = () => {
           </Tooltip>
         </FormControl>
       </Grid>
-
-      <Grid width="300px">
+      <Grid sx={{
+        width: "300px"
+      }}>
         <TextField
           name="search"
           label="Type movie name"

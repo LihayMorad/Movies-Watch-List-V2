@@ -29,12 +29,13 @@ const MovieCard = ({ isTrending = false, movie }: { isTrending?: boolean; movie:
     >
       <Box
         component="img"
-        maxWidth="100%"
-        height="100%"
         src={`${TMDB_IMAGE_BASE_URL}/w500${movie.poster_path}`}
         alt={movie.title}
         loading="lazy"
-      />
+        sx={{
+          maxWidth: "100%",
+          height: "100%"
+        }} />
     </Card>
   );
 };

@@ -22,13 +22,13 @@ const Trending = () => {
   if (!user) return null;
 
   return (
-    <Grid container alignItems="center" flexDirection="column">
+    <Grid container sx={{ alignItems: "center", flexDirection: "column" }}>
       <Typography variant="h6" color="warning">
         <WhatshotIcon fontSize="inherit" sx={{ marginRight: "4px" }} />
         Trending
       </Typography>
 
-      <Grid container gap={1} justifyContent="center">
+      <Grid container sx={{ gap: 1, justifyContent: "center" }}>
         {movies?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} isTrending={true} />
         ))}

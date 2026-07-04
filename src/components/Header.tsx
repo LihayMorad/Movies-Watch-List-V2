@@ -10,7 +10,7 @@ interface HeaderProps {
 
 const Header = ({ activeTab, onTabChange }: HeaderProps) => {
   return (
-    <Grid container alignItems="center" justifyContent="space-between">
+    <Grid container sx={{ alignItems: "center", justifyContent: "space-between" }}>
       <Grid size={{ xs: 1 }}>
         <Logo />
       </Grid>

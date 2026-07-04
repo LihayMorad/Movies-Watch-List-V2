@@ -24,12 +24,12 @@ const MovieHighlight = () => {
   const cast = movie?.credits?.cast.slice(0, 3);
 
   return (
-    <Grid container width="1070px" height="600px">
+    <Grid container sx={{ width: "1070px", height: "600px" }}>
       <Box
-        position="absolute"
-        width="inherit"
-        height="inherit"
         sx={{
+          position: "absolute",
+          width: "inherit",
+          height: "inherit",
           background: `url(${TMDB_IMAGE_BASE_URL}/original${movie.backdrop_path}) no-repeat`,
           backgroundSize: "contain",
           maskImage: "linear-gradient(to right, black 75%, transparent 100%)",
@@ -37,10 +37,10 @@ const MovieHighlight = () => {
         }}
       />
 
-      <Grid container flexDirection="column" gap={1} zIndex={1} padding={2} size={12}>
-        <Grid container gap={1} alignItems="center" justifyContent="space-between">
-          <Grid flexGrow={1}>
-            <Typography variant="h5" fontWeight={500} sx={typographyStyles}>
+      <Grid container size={12} sx={{ flexDirection: "column", gap: 1, zIndex: 1, padding: 2 }}>
+        <Grid container sx={{ gap: 1, alignItems: "center", justifyContent: "space-between" }}>
+          <Grid sx={{ flexGrow: 1 }}>
+            <Typography variant="h5" sx={{ fontWeight: 500, ...typographyStyles }}>
               {movie.title}
             </Typography>
           </Grid>
@@ -61,12 +61,12 @@ const MovieHighlight = () => {
         </Grid>
 
         <Grid>
-          <Typography variant="body1" sx={typographyStyles} maxWidth="400px">
+          <Typography variant="body1" sx={{ maxWidth: "400px", ...typographyStyles }}>
             {movie.overview || movie.Plot}
           </Typography>
         </Grid>
 
-        <Grid container gap={3} alignItems="center">
+        <Grid container sx={{ gap: 3, alignItems: "center" }}>
           <Grid>
             <Typography variant="subtitle2" sx={typographyStyles}>
               {movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : "N/A"}
@@ -80,7 +80,7 @@ const MovieHighlight = () => {
             </Typography>
           </Grid>
 
-          <Grid container gap={1} alignItems="center">
+          <Grid container sx={{ gap: 1, alignItems: "center" }}>
             {imdbId && (
               <Grid>
                 <Link href={`https://www.imdb.com/title/${imdbId}`} target="_blank">
@@ -97,14 +97,14 @@ const MovieHighlight = () => {
           </Grid>
         </Grid>
 
-        <Grid container gap={1}>
+        <Grid container sx={{ gap: 1 }}>
           {movie.genres?.map((genre) => (
             <Chip
               key={genre.id}
               size="small"
               variant="outlined"
               label={
-                <Typography variant="subtitle2" color="#ffffff" sx={typographyStyles}>
+                <Typography variant="subtitle2" sx={typographyStyles}>
                   {genre.name}
                 </Typography>
               }
@@ -113,40 +113,38 @@ const MovieHighlight = () => {
           ))}
         </Grid>
 
-        <Grid container gap={0.5} mt="auto" position="relative">
+        <Grid container sx={{ gap: 0.5, mt: "auto", position: "relative" }}>
           {cast?.map(
             (actor) =>
               actor.profile_path && (
                 <Grid
                   key={actor.id}
-                  height="160px"
-                  borderRadius={2}
-                  position="relative"
                   component="a"
                   href={`https://en.wikipedia.org/wiki/${actor.name.trim()}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  sx={{ height: "160px", borderRadius: 2, position: "relative" }}
                 >
                   <Box
                     component="img"
-                    height="100%"
                     src={`${TMDB_IMAGE_BASE_URL}/w200${actor.profile_path}`}
                     alt={movie.title}
                     loading="lazy"
-                    borderRadius="inherit"
-                    boxShadow="0 0 20px 0px #000000"
+                    sx={{ height: "100%", borderRadius: "inherit", boxShadow: "0 0 20px 0px #000000" }}
                   />
 
                   <Typography
                     variant="subtitle2"
-                    fontSize="14px"
-                    sx={typographyStyles}
-                    width="100%"
-                    display="block"
-                    position="absolute"
-                    bottom={0}
-                    textAlign="center"
-                    padding="0 4px"
+                    sx={{
+                      fontSize: "14px",
+                      width: "100%",
+                      display: "block",
+                      position: "absolute",
+                      bottom: 0,
+                      textAlign: "center",
+                      padding: "0 4px",
+                      ...typographyStyles,
+                    }}
                   >
                     {actor.name}
                   </Typography>

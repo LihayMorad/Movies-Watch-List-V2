@@ -8,7 +8,17 @@ interface NavigationMenuProps {
 
 const NavigationMenu = ({ activeTab, onTabChange }: NavigationMenuProps) => {
   return (
-    <Grid container alignItems="center" gap="24px" height="50px" paddingX="24px" borderRadius="50px" sx={{ backgroundColor: "#091c2f" }}>
+    <Grid
+      container
+      sx={{
+        alignItems: "center",
+        gap: "24px",
+        height: "50px",
+        paddingX: "24px",
+        borderRadius: "50px",
+        backgroundColor: "#091c2f",
+      }}
+    >
       {tabs.map((tab) => {
         const IconComponent = tab.icon;
 

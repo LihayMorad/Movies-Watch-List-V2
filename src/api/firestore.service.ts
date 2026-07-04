@@ -7,7 +7,10 @@ export const fetchMovies = async (userId: string): Promise<FirestoreMovie[]> => 
 
   return moviesCollection.docs
     .slice(0, 10) // TODO - remove
-    .map((item) => ({ id: item.id, ...item.data() }) as FirestoreMovie);
+    .map((item) => (({
+    id: item.id,
+    ...item.data()
+  }) as FirestoreMovie));
 };
 
 export const fetchMovie = async (userId: string, movieId: string): Promise<FirestoreMovie | null> => {
