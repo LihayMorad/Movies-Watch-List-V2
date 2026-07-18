@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Box, Card } from "@mui/material";
 import type { Movie } from "../../types/Movie";
-import { MovieContext } from "../../context/movieContext";
+import { useMovieContext } from "../../context/movieContext";
 
 const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
 const MovieCard = ({ isTrending = false, movie }: { isTrending?: boolean; movie: Partial<Movie> }) => {
-  const { setMovieId } = useContext(MovieContext);
+  const { setMovieId } = useMovieContext();
 
   return (
     <Card

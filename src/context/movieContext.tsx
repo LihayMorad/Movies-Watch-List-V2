@@ -1,20 +1,29 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { fetchMovieData } from "../api/movies.service";
 import type { Movie } from "../types/Movie";
-import { AuthContext } from "./authContext";
+import { useAuthContext } from "./authContext";
 
-export const MovieContext = createContext<{
+type MovieContextValue = {
   movie: Partial<Movie> | null;
   setMovieId: React.Dispatch<React.SetStateAction<number | null>>;
-}>({
-  movie: null,
-  setMovieId: () => undefined,
-});
+};
+
+export const MovieContext = createContext<MovieContextValue | undefined>(undefined);
+
+export const useMovieContext = () => {
+  const context = useContext(MovieContext);
+
+  if (!context) {
+    throw new Error("useMovieContext must be used within a MovieContext provider");
+  }
+
+  return context;
+};
 
 const MovieContextProvider: React.FunctionComponent<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const [movieId, setMovieId] = useState<number | null>(null);
   const [movie, setMovie] = useState<Partial<Movie> | null>(null);
 

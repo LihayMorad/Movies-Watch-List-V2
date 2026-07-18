@@ -1,18 +1,25 @@
-import { createContext, type FunctionComponent, useEffect, useState } from "react";
+import { createContext, type FunctionComponent, useContext, useEffect, useState } from "react";
 import { signInWithPopup, signOut, signInAnonymously, type User } from "firebase/auth";
 import { auth, googleAuthProvider } from "../config/firebase";
 
-export const AuthContext = createContext<{
+type AuthContextValue = {
   user: User | null;
   handleSignIn: () => void;
   handleSignInAnonymously: () => void;
   handleSignOut: () => void;
-}>({
-  user: null,
-  handleSignIn: () => null,
-  handleSignInAnonymously: () => null,
-  handleSignOut: () => null,
-});
+};
+
+export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("useAuthContext must be used within an AuthContext provider");
+  }
+
+  return context;
+};
 
 const UserContextProvider: FunctionComponent<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);

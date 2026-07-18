@@ -1,4 +1,4 @@
-import { useContext, type ChangeEvent } from "react";
+import { type ChangeEvent } from "react";
 import {
   Checkbox,
   FormControl,
@@ -18,8 +18,8 @@ import {
   RemoveRedEyeOutlined as RemoveRedEyeOutlinedIcon,
   Search as SearchIcon,
 } from "@mui/icons-material";
-import { AuthContext } from "../../context/authContext";
-import { FiltersContext } from "../../context/filtersContext";
+import { useAuthContext } from "../../context/authContext";
+import { useFiltersContext } from "../../context/filtersContext";
 import { type Filters } from "../../types/Filters";
 
 const tooltipStyles = {
@@ -56,8 +56,8 @@ const getOrderLabel = (sortBy: Filters["sortBy"], orderBy: Filters["orderBy"]): 
 };
 
 const FiltersMenu = () => {
-  const { user } = useContext(AuthContext);
-  const { filters, updateFilters } = useContext(FiltersContext);
+  const { user } = useAuthContext();
+  const { filters, updateFilters } = useFiltersContext();
 
   const handleFilterChange = (event: SelectChangeEvent<string | number> | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     updateFilters({ [event.target.name]: event.target.value });

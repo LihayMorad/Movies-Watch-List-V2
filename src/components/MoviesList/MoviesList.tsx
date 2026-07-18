@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 import { fetchMovies } from "../../api/firestore.service";
 import type { FirestoreMovie } from "../../types/Movie";
 import { Movie } from "../Movie/Movie";
 
 const MoviesList = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const [movies, setMovies] = useState<FirestoreMovie[]>([]);
 
   useEffect(() => {

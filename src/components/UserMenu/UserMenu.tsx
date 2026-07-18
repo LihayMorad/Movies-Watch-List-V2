@@ -1,7 +1,7 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Menu, MenuItem, Tooltip, Button, IconButton, Stack } from "@mui/material";
 import { AccountCircle as AccountCircleIcon, Person as PersonIcon, PersonOutlined as PersonOutlineIcon } from "@mui/icons-material";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const tooltipStyles = {
   sx: { backgroundColor: "black", color: "white" },
@@ -19,7 +19,7 @@ const menuItemStyles = {
 };
 
 const UserMenu = () => {
-  const { user, handleSignIn, handleSignInAnonymously, handleSignOut } = useContext(AuthContext);
+  const { user, handleSignIn, handleSignInAnonymously, handleSignOut } = useAuthContext();
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = !!menuAnchorEl;
 

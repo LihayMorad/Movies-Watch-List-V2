@@ -1,7 +1,12 @@
-import { createContext, type FunctionComponent, useEffect, useState } from "react";
+import { createContext, type FunctionComponent, useContext, useEffect, useState } from "react";
 import type { Filters } from "../types/Filters";
 
 const FILTERS_STORAGE_KEY = "filters";
+
+type FiltersContextValue = {
+  filters: Filters;
+  updateFilters: (filters: Partial<Filters>) => void;
+};
 
 const DEFAULT_FILTERS: Filters = {
   sortBy: "releaseYear",
@@ -11,13 +16,17 @@ const DEFAULT_FILTERS: Filters = {
   showWatchedMovies: false,
 };
 
-export const FiltersContext = createContext<{
-  filters: Filters;
-  updateFilters: (filters: Partial<Filters>) => void;
-}>({
-  filters: DEFAULT_FILTERS,
-  updateFilters: () => undefined,
-});
+export const FiltersContext = createContext<FiltersContextValue | undefined>(undefined);
+
+export const useFiltersContext = () => {
+  const context = useContext(FiltersContext);
+
+  if (!context) {
+    throw new Error("useFiltersContext must be used within a FiltersContext provider");
+  }
+
+  return context;
+};
 
 const FiltersContextProvider: FunctionComponent<{
   children: React.ReactNode;

@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Grid, Box, Typography, Chip, Tooltip, IconButton, Link, Fab } from "@mui/material";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import AddIcon from "@mui/icons-material/Add";
 import IMDB_LOGO from "../assets/IMDb_Logo.png";
-import { MovieContext } from "../context/movieContext";
+import { useMovieContext } from "../context/movieContext";
 import MovieTrailer from "./MovieTrailer/MovieTrailer";
 
 const TMDB_IMAGE_BASE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
@@ -13,7 +13,7 @@ const typographyStyles = { textShadow: "black 1px 0 10px", color: "white" };
 const tooltipStyles = { sx: { backgroundColor: "black", color: "white" } };
 
 const MovieHighlight = () => {
-  const { movie } = useContext(MovieContext);
+  const { movie } = useMovieContext();
   const [trailerDialogOpened, setTrailerDialogOpened] = useState(false);
 
   if (!movie) return null;
@@ -51,7 +51,10 @@ const MovieHighlight = () => {
                 <IconButton sx={{ p: 0 }}>
                   <YouTubeIcon
                     fontSize="large"
-                    sx={{ color: "#FF0000", filter: "drop-shadow(0px 0px 6px black)" }}
+                    sx={{
+                      color: "#FF0000",
+                      filter: "drop-shadow(0px 0px 6px black)",
+                    }}
                     onClick={() => setTrailerDialogOpened(true)}
                   />
                 </IconButton>
@@ -76,7 +79,11 @@ const MovieHighlight = () => {
           <Grid>
             <Typography variant="subtitle2" sx={typographyStyles}>
               {!!movie.release_date &&
-                new Date(movie.release_date).toLocaleDateString(undefined, { year: "numeric", month: "numeric", day: "numeric" })}
+                new Date(movie.release_date).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                })}
             </Typography>
           </Grid>
 
@@ -123,14 +130,22 @@ const MovieHighlight = () => {
                   href={`https://en.wikipedia.org/wiki/${actor.name.trim()}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  sx={{ height: "160px", borderRadius: 2, position: "relative" }}
+                  sx={{
+                    height: "160px",
+                    borderRadius: 2,
+                    position: "relative",
+                  }}
                 >
                   <Box
                     component="img"
                     src={`${TMDB_IMAGE_BASE_URL}/w200${actor.profile_path}`}
                     alt={movie.title}
                     loading="lazy"
-                    sx={{ height: "100%", borderRadius: "inherit", boxShadow: "0 0 20px 0px #000000" }}
+                    sx={{
+                      height: "100%",
+                      borderRadius: "inherit",
+                      boxShadow: "0 0 20px 0px #000000",
+                    }}
                   />
 
                   <Typography
@@ -152,11 +167,22 @@ const MovieHighlight = () => {
               )
           )}
 
-          <Grid sx={{ position: "absolute", left: "50%", top: "calc(100% - 24px)", transform: "translate(-50%, -50%)" }}>
+          <Grid
+            sx={{
+              position: "absolute",
+              left: "50%",
+              top: "calc(100% - 24px)",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
             <Tooltip
               title="Add movie to your watch list"
               arrow
-              slotProps={{ popper: { modifiers: [{ name: "offset", options: { offset: [0, -4] } }] } }}
+              slotProps={{
+                popper: {
+                  modifiers: [{ name: "offset", options: { offset: [0, -4] } }],
+                },
+              }}
             >
               <Fab color="primary" size="medium">
                 <AddIcon />

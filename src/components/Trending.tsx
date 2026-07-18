@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
-import { AuthContext } from "../context/authContext";
+import { useAuthContext } from "../context/authContext";
 import { fetchTrendingMovies } from "../api/movies.service";
 import type { TrendingMovie } from "../types/Movie";
 import MovieCard from "./MovieCard/MovieCard";
 
 const Trending = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const [movies, setMovies] = useState<TrendingMovie[]>([]);
 
   useEffect(() => {
