@@ -10,8 +10,7 @@
     "lint:fix": "oxlint --fix src",
     "format": "oxfmt src",
     "format:check": "oxfmt --check src",
-    "preview": "vite preview",
-    "prettier:check": "prettier src/**/* --check"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -39,7 +38,6 @@
     "oxfmt": "^0.57.0",
     "oxlint": "^1.72.0",
     "oxlint-tsgolint": "^0.24.0",
-    "prettier": "^3.9.4",
     "sass-embedded": "^1.100.0",
     "typescript": "~5.9.3",
     "vite": "^8.1.3"
