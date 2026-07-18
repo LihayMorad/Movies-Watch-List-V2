@@ -11,7 +11,7 @@ const MoviesList = () => {
 
   useEffect(() => {
     if (user?.uid) {
-      (async () => {
+      void (async () => {
         const movies = await fetchMovies(user.uid);
         console.log("movies", movies);
         setMovies(movies);

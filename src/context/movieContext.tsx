@@ -11,14 +11,16 @@ export const MovieContext = createContext<{
   setMovieId: () => undefined,
 });
 
-const MovieContextProvider: React.FunctionComponent<{ children: React.ReactNode }> = ({ children }) => {
+const MovieContextProvider: React.FunctionComponent<{
+  children: React.ReactNode;
+}> = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [movieId, setMovieId] = useState<number | null>(null);
   const [movie, setMovie] = useState<Partial<Movie> | null>(null);
 
   useEffect(() => {
     if (user?.uid && movieId) {
-      (async () => {
+      void (async () => {
         const movieData = await fetchMovieData(movieId);
         setMovie(movieData);
       })();

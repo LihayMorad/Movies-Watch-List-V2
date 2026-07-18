@@ -7,11 +7,11 @@ export const Movie = ({ movie }: { movie: FirestoreMovie }) => {
   const [movieData, setMovieData] = useState<Partial<MovieType> | null>(null);
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       const data = await fetchMovieData(movie.imdbID);
       setMovieData(data);
     })();
-  }, [movie.id]);
+  }, [movie]);
 
   if (!movieData) return null;
 

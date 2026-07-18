@@ -12,12 +12,12 @@ const Trending = () => {
 
   useEffect(() => {
     if (user?.uid) {
-      (async () => {
+      void (async () => {
         const trendingMovies = await fetchTrendingMovies();
         setMovies(trendingMovies);
       })();
     }
-  }, [user, fetchTrendingMovies]);
+  }, [user]);
 
   if (!user) return null;
 
