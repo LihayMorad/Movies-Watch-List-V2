@@ -14,6 +14,7 @@ const DEFAULT_FILTERS: Filters = {
   year: "All",
   maxResults: 10,
   showWatchedMovies: false,
+  search: "",
 };
 
 export const FiltersContext = createContext<FiltersContextValue | undefined>(undefined);

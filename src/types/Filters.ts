@@ -4,4 +4,5 @@ export interface Filters {
   year: number | "All";
   maxResults: number;
   showWatchedMovies: boolean;
+  search: string;
 }
