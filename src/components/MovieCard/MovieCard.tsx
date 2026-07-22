@@ -18,7 +18,7 @@ const MovieCard = ({ isTrending = false, movie }: { isTrending?: boolean; movie:
         boxShadow: "0px 1px 5px black",
         cursor: "pointer",
         background: "none",
-        transition: "transform 0.15s ease-out",
+        transition: "transform 0.20s ease-out, outline 0.20s ease-out, filter 0.20s ease-out",
         "&:hover": {
           transform: "scale(1.05)",
           filter: "brightness(1.1)",
