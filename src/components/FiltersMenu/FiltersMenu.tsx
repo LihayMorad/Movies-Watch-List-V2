@@ -19,6 +19,7 @@ import {
   Search as SearchIcon,
 } from "@mui/icons-material";
 import { useAuthContext } from "../../context/authContext";
+import { useMovieContext } from "../../context/movieContext";
 import { useFiltersContext } from "../../context/filtersContext";
 import { type Filters } from "../../types/Filters";
 
@@ -57,14 +58,17 @@ const getOrderLabel = (sortBy: Filters["sortBy"], orderBy: Filters["orderBy"]): 
 
 const FiltersMenu = () => {
   const { user } = useAuthContext();
+  const { setMovieId } = useMovieContext();
   const { filters, updateFilters } = useFiltersContext();
 
   const handleFilterChange = (event: SelectChangeEvent<string | number> | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     updateFilters({ [event.target.name]: event.target.value });
+    setMovieId(null);
   };
 
   const handleCheckBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateFilters({ [event.target.name]: event.target.checked });
+    setMovieId(null);
   };
 
   if (!user) return null;

@@ -33,6 +33,8 @@ const MovieContextProvider: React.FunctionComponent<{
         const movieData = await fetchMovieData(movieId);
         setMovie(movieData);
       })();
+    } else {
+      setMovie(null);
     }
   }, [user, movieId]);
 

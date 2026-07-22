@@ -1,4 +1,5 @@
 import { Button, Grid } from "@mui/material";
+import { useMovieContext } from "../../context/movieContext";
 import { tabs } from "./config";
 
 interface NavigationMenuProps {
@@ -7,6 +8,8 @@ interface NavigationMenuProps {
 }
 
 const NavigationMenu = ({ activeTab, onTabChange }: NavigationMenuProps) => {
+  const { setMovieId } = useMovieContext();
+
   return (
     <Grid
       container
@@ -28,7 +31,10 @@ const NavigationMenu = ({ activeTab, onTabChange }: NavigationMenuProps) => {
               disableRipple
               variant="text"
               startIcon={<IconComponent fontSize="inherit" />}
-              onClick={() => onTabChange(tab.id)}
+              onClick={() => {
+                setMovieId(null);
+                onTabChange(tab.id);
+              }}
               sx={{
                 color: tab.color,
                 textTransform: "none",
