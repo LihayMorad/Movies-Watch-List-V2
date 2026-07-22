@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Grid, Typography } from "@mui/material";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
+import { Grid } from "@mui/material";
 import { useAuthContext } from "../context/authContext";
 import { fetchTrendingMovies } from "../api/movies.service";
 import type { TrendingMovie } from "../types/Movie";
@@ -23,11 +22,6 @@ const Trending = () => {
 
   return (
     <Grid container sx={{ alignItems: "center", flexDirection: "column" }}>
-      <Typography variant="h6" color="warning">
-        <WhatshotIcon fontSize="inherit" sx={{ marginRight: "4px" }} />
-        Trending
-      </Typography>
-
       <Grid container sx={{ gap: 1, justifyContent: "center" }}>
         {movies?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} isTrending={true} />
