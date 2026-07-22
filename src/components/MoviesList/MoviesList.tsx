@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { useAuthContext } from "../../context/authContext";
+import { useFiltersContext } from "../../context/filtersContext";
 import { fetchMovies } from "../../api/firestore.service";
 import type { FirestoreMovie } from "../../types/Movie";
 import { Movie } from "../Movie/Movie";
 
 const MoviesList = () => {
   const { user } = useAuthContext();
+  const { filters } = useFiltersContext();
   const [movies, setMovies] = useState<FirestoreMovie[]>([]);
 
   useEffect(() => {
     if (user?.uid) {
       void (async () => {
-        const movies = await fetchMovies(user.uid);
-        console.log("movies", movies);
+        const movies = await fetchMovies(user.uid, filters);
         setMovies(movies);
       })();
     }
-  }, [user]);
+  }, [filters, user]);
 
   if (!user) return null;
 
