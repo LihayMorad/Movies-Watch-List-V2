@@ -24,7 +24,7 @@ const MovieHighlight = () => {
   const cast = movie?.credits?.cast.slice(0, 3);
 
   return (
-    <Grid container sx={{ width: "1070px", height: "600px" }}>
+    <Grid container sx={{ width: "1070px", height: "600px", marginBottom: 2 }}>
       <Box
         sx={{
           position: "absolute",

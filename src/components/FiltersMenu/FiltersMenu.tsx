@@ -70,7 +70,7 @@ const FiltersMenu = () => {
   if (!user) return null;
 
   return (
-    <Grid container sx={{ justifyContent: "center", gap: 2 }}>
+    <Grid container sx={{ justifyContent: "center", gap: 2, marginBottom: 2 }}>
       <Grid sx={{ width: "150px" }}>
         <FormControl fullWidth>
           <InputLabel id="sortBy" sx={{ color: "white" }}>
